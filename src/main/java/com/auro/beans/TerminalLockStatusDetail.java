@@ -9,13 +9,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "terminallockerstatusdetail ")
 public class TerminalLockStatusDetail {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int SlNo;
 	
+	 
+
+
+
 	@Column(name="packettype")
 	private String packettype;
+	
 	
 	 
 	@Column(name="status")
@@ -38,6 +42,190 @@ public class TerminalLockStatusDetail {
 	@Column(name="lockerNo")
 	private int lockerNo;
 	
+	public int getLockerNo() {
+		return lockerNo;
+	}
+
+
+
+
+	public void setLockerNo(int lockerNo) {
+		this.lockerNo = lockerNo;
+	}
+
+
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+
+
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+
+
+
+	public String getUserid() {
+		return userid;
+	}
+
+
+
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+
+
+
+	public java.sql.Date getTicldate() {
+		return ticldate;
+	}
+
+
+
+
+	public void setTicldate(java.sql.Date ticldate) {
+		this.ticldate = ticldate;
+	}
+
+
+
+
+	public java.sql.Time getTicltime() {
+		return ticltime;
+	}
+
+
+
+
+	public void setTicltime(java.sql.Time ticltime) {
+		this.ticltime = ticltime;
+	}
+
+	
+	
+	
+	public int getSlNo() {
+		return SlNo;
+	}
+
+
+
+
+	public void setSlNo(int slNo) {
+		SlNo = slNo;
+	}
+
+
+
+
+	public String getPackettype() {
+		return packettype;
+	}
+
+
+
+
+	public void setPackettype(String packettype) {
+		this.packettype = packettype;
+	}
+
+
+
+
+	 
+
+
+
+
+	public java.sql.Date getDevicedate() {
+		return devicedate;
+	}
+
+
+
+
+	public void setDevicedate(java.sql.Date devicedate) {
+		this.devicedate = devicedate;
+	}
+
+
+
+
+	public java.sql.Time getDevicetime() {
+		return devicetime;
+	}
+
+
+
+
+	public void setDevicetime(java.sql.Time devicetime) {
+		this.devicetime = devicetime;
+	}
+
+
+
+
+	public java.sql.Date getRdate() {
+		return rdate;
+	}
+
+
+
+
+	public void setRdate(java.sql.Date rdate) {
+		this.rdate = rdate;
+	}
+
+
+
+
+	public java.sql.Time getRtime() {
+		return rtime;
+	}
+
+
+
+
+	public void setRtime(java.sql.Time rtime) {
+		this.rtime = rtime;
+	}
+
+	@Column(name="terminalID")
+	private String terminalID;
+	
+		
+	public String getTerminalID() {
+		return terminalID;
+	}
+
+
+
+
+	public void setTerminalID(String terminalID) {
+		this.terminalID = terminalID;
+	}
 
 	@Column(name="devicedate")
 	private java.sql.Date devicedate;
@@ -51,114 +239,22 @@ public class TerminalLockStatusDetail {
 	@Column(name="rtime")
 	private java.sql.Time rtime;
 	
-	@Column(name="terminalID")
-	private String terminalID;
 	
-	public int getLockerNo() {
-		return lockerNo;
-	}
-
-	public void setLockerNo(int lockerNo) {
-		this.lockerNo = lockerNo;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-
-	public java.sql.Date getTicldate() {
-		return ticldate;
-	}
-
-	public void setTicldate(java.sql.Date ticldate) {
-		this.ticldate = ticldate;
-	}
-
-	public java.sql.Time getTicltime() {
-		return ticltime;
-	}
-
-	public void setTicltime(java.sql.Time ticltime) {
-		this.ticltime = ticltime;
-	}
-
-	public int getSlNo() {
-		return SlNo;
-	}
-
-	public void setSlNo(int slNo) {
-		SlNo = slNo;
-	}
-
-	public String getPackettype() {
-		return packettype;
-	}
+	//satish Jan 16 2025
 	
-	public void setPackettype(String packettype) {
-		this.packettype = packettype;
+	public String getBoxstatus() {
+		return boxstatus;
 	}
 
-	public java.sql.Date getDevicedate() {
-		return devicedate;
+	public void setBoxstatus(String boxstatus) {
+		this.boxstatus = boxstatus;
 	}
 
-	public void setDevicedate(java.sql.Date devicedate) {
-		this.devicedate = devicedate;
-	}
+	@Column(name="boxstatus")
+	private String boxstatus;
 
-	public java.sql.Time getDevicetime() {
-		return devicetime;
-	}
+	//satish Jan 16 2025 end
 
-	public void setDevicetime(java.sql.Time devicetime) {
-		this.devicetime = devicetime;
-	}
-
-	public java.sql.Date getRdate() {
-		return rdate;
-	}
-
-	public void setRdate(java.sql.Date rdate) {
-		this.rdate = rdate;
-	}
-
-	public java.sql.Time getRtime() {
-		return rtime;
-	}
-
-	public void setRtime(java.sql.Time rtime) {
-		this.rtime = rtime;
-	}
-
-
-	
-	public String getTerminalID() {
-		return terminalID;
-	}
-
-	public void setTerminalID(String terminalID) {
-		this.terminalID = terminalID;
-	}
 
 	 
 }

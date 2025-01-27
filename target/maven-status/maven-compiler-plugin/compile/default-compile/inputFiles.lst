@@ -4,6 +4,7 @@ C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locke
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\gloablVariable\GlobalVariable.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchRefundHistory.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\otpHandle\OtpHandler.java
+C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\blockedCustomers.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TerminalLockStatusDetail.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\payment\status\PaymentStatusBefor.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\lockretrice\passcodeHandler\OpenLockHandler.java
@@ -15,6 +16,7 @@ C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\lockr
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchActiveTransactionMallAuth.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\SaveSiteRegistration.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\locker\delete\row\DeleteAndUpdateLockerLockDetails.java
+C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auto\user\logdetails\HandleUserLogsDetails.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\invoiceDetails.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLossedCustomers.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\User.java
@@ -27,6 +29,7 @@ C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locke
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\payment\status\TransactionRefundHandler.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchPdfDownloadingFile.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchToXlFromIvnoice.java
+C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchBlockedCustomers.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLocksDetail.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\TerminalIdDetails.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchMalfunctioningLocks.java
@@ -58,6 +61,7 @@ C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroL
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLockerStatus.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\MallAuthorityOperations.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TerminalLockMapping.java
+C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\UserLogs.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\SaveLockerCategory.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchFailedTransaction.java
 C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLockersForChart.java

@@ -84,10 +84,11 @@ public class FetchStates extends HttpServlet {
 
 			try {
 
-				String query = "SELECT area, terminalid FROM SiteRegistration WHERE state = :State";
+//				String query = "SELECT area, terminalid FROM SiteRegistration WHERE state = :State";
+				String query = "SELECT area, terminalid FROM SiteRegistration WHERE state = :State AND status=:status";
 //				allStates = session.createQuery(query).setParameter("State", pathVar).getResultList();
 
-				List<Object[]> stateResult = session.createQuery(query).setParameter("State", pathVar).getResultList();
+				List<Object[]> stateResult = session.createQuery(query).setParameter("State", pathVar).setParameter("status", "ACTIVE").getResultList();
 
 				if (stateResult.size() > 0) {
 					for (Object[] areaAndTermIDarr : stateResult) {

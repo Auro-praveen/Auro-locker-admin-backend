@@ -29,41 +29,46 @@ import com.razorpay.RazorpayException;
 @WebServlet("/UserLogDetails")
 public class UserLogDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserLogDetails() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-    
+	public UserLogDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// System.out.println("inside post");
-		
+
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Method", "POST, GET, UPDATE");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		String ip = request.getRemoteAddr();
 		// System.out.println("ip addr : "+ip);
-		
+
 		PrintWriter writer = response.getWriter();
-		
+
 		JSONObject respObj = new JSONObject();
 		Session session = HibernateUtils.getSession();
 		LogDetails logDetails = new LogDetails();
-		
+
 		try {
-			String jsonBody = new BufferedReader(new InputStreamReader(request.getInputStream())).lines().collect(Collectors.joining("/"));
+
+			String jsonBody = new BufferedReader(new InputStreamReader(request.getInputStream())).lines()
+					.collect(Collectors.joining("/"));
 			JSONObject reqObj = new JSONObject(jsonBody);
 			logDetails.setEventDate(reqObj.getString("date"));
 			logDetails.setEventTime(reqObj.getString("time"));
@@ -71,31 +76,30 @@ public class UserLogDetails extends HttpServlet {
 			logDetails.setRemarks(reqObj.getString("remarks"));
 			logDetails.setUserName(reqObj.getString("username"));
 			logDetails.setIpAddress(ip);
-			
+
 			Transaction transaction = session.beginTransaction();
 			int n = (int) session.save(logDetails);
 			transaction.commit();
-		
-			if (n>1) {
+
+			if (n > 1) {
 				respObj.put("status", "success");
 			} else {
 				respObj.put("status", "failed");
 			}
 //			respObj.put("status", "failed");
-			
+
 			// System.out.println(reqObj);
-						
+
 			writer.println(respObj.toString());
 			writer.flush();
 			writer.close();
 			session.clear();
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+
 	}
-	
 
 }

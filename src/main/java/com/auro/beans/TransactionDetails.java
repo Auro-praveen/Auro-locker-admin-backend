@@ -309,6 +309,7 @@ public class TransactionDetails {
 	private String paygatewayPaymenretreiveSignature;
 	
 	private String browtype;
+	private int partretamount;
 	
 	public String getBrowtype() {
 		return browtype;
@@ -327,6 +328,15 @@ public class TransactionDetails {
 	public void setExpayTraID(String expayTraID) {
 		this.expayTraID = expayTraID;
 	}
+
+	public int getPartretamount() {
+		return partretamount;
+	}
+
+	public void setPartretamount(int partretamount) {
+		this.partretamount = partretamount;
+	}
+	
 	
 }
 

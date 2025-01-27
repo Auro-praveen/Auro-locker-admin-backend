@@ -136,10 +136,20 @@ public class FetchDeviceHealth extends HttpServlet {
 			try {
 
 				if (stateName != null) {
+					
+					if (type.equals("ACTIVE")) {
+						statwiseTerminals = session
+								.createQuery("select terminalid from SiteRegistration where state=:state and status=:status")
+								.setParameter("state", stateName).setParameter("status", "ACTIVE").getResultList();
+					} else {
+						statwiseTerminals = session
+								.createQuery("select terminalid from SiteRegistration where state=:state")
+								.setParameter("state", stateName).getResultList();
+					}
 
-					statwiseTerminals = session
-							.createQuery("select terminalid from SiteRegistration where state=:state")
-							.setParameter("state", stateName).getResultList();
+//					statwiseTerminals = session
+//							.createQuery("select terminalid from SiteRegistration where state=:state")
+//							.setParameter("state", stateName).getResultList();
 
 //					System.out.println(statwiseTerminals);
 

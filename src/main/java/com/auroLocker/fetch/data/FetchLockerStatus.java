@@ -82,6 +82,7 @@ public class FetchLockerStatus extends HttpServlet {
 		JSONArray remarks = new JSONArray();
 		JSONArray status = new JSONArray();
 		JSONArray userId = new JSONArray();
+		JSONArray boxType = new JSONArray();
 
 		Session session = HibernateUtils.getSession();
 		Transaction transaction = session.beginTransaction();
@@ -105,6 +106,7 @@ public class FetchLockerStatus extends HttpServlet {
 				remarks.put(terminalLockStatusDetail.getRemarks());
 				status.put(terminalLockStatusDetail.getStatus());
 				userId.put(terminalLockStatusDetail.getUserid());
+				boxType.put(terminalLockStatusDetail.getBoxstatus());
 				// System.out.println(terminalLockStatusDetail.getLockerNo());
 				// System.out.println(terminalLockStatusDetail.getTerminalID());
 
@@ -144,6 +146,7 @@ public class FetchLockerStatus extends HttpServlet {
 			lockerStatusObj.put("status", status);
 			lockerStatusObj.put("terminalId", terminalId);
 			lockerStatusObj.put("userId", userId);
+			lockerStatusObj.put("boxtype", boxType);
 		} else {
 			lockerStatusObj.put("responseCode", "null");
 		}

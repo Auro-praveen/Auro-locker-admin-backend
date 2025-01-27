@@ -14,40 +14,23 @@
 		<!-- <property name="hibernate.connection.username">root</property> <property 
 			name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
 			<property name="hibernate.connection.password">root</property> -->
-<!--
+		<!-- <property name="hibernate.connection.username">praveen</property> 
+			<property name="hibernate.connection.url">jdbc:mysql://192.168.0.186:3306/auroautolocker</property> 
+			<property name="hibernate.connection.password">root</property> -->
 
-		<property name="hibernate.connection.username">praveen</property>
-		<property name="hibernate.connection.url">jdbc:mysql://192.168.0.186:3306/auroautolocker</property>
-		<property name="hibernate.connection.password">root</property>
--->		
-		
 		<!-- <property name="hibernate.connection.username">root</property> <property 
 			name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
 			<property name="hibernate.connection.password">root</property> -->
 
+
 		<property name="hibernate.connection.username">praveen</property>
 		<property name="hibernate.connection.url">jdbc:mysql://192.168.0.186:3306/auroautolocker</property>
 		<property name="hibernate.connection.password">root</property>
 
-<!-- 
+		<!-- for production app.tuckit.in <property name="hibernate.connection.username">root</property> 
+			<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
+			<property name="hibernate.connection.password">aurotecGM@21</property> -->
 
-		for production app.tuckit.in
-
-		 <property name="hibernate.connection.username">root</property> 
-		 <property 	name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
-		 <property name="hibernate.connection.password">aurotecGM@21</property> 
-
- -->
-
-
-
-	<!-- Database for Locker Templ admin here here -->
-
-	<!--
-		<property name="hibernate.connection.username">praveen</property>
-		<property name="hibernate.connection.url">jdbc:mysql://192.168.0.140:3306/aurotempledb</property>
-		<property name="hibernate.connection.password">root</property>
-	-->
 
 
 		<!-- Database for Locker Templ admin here here -->
@@ -55,16 +38,18 @@
 		<!-- <property name="hibernate.connection.username">praveen</property> 
 			<property name="hibernate.connection.url">jdbc:mysql://192.168.0.140:3306/aurotempledb</property> 
 			<property name="hibernate.connection.password">root</property> -->
-			
-			
-			<!-- 
-			 For production tuckit in other ec2 instance for admin hosting 
-			
-			<property name="hibernate.connection.username">auro</property> <property 
-			name="hibernate.connection.url">jdbc:mysql://3.7.218.151:3306/auroautolocker</property> 
-			<property name="hibernate.connection.password">aurotecGM@21</property>
-			
-			 -->
+
+
+		<!-- Database for Locker Templ admin here here -->
+
+		<!-- <property name="hibernate.connection.username">praveen</property> 
+			<property name="hibernate.connection.url">jdbc:mysql://192.168.0.140:3306/aurotempledb</property> 
+			<property name="hibernate.connection.password">root</property> -->
+
+
+		<!-- For production tuckit in other ec2 instance for admin hosting <property 
+			name="hibernate.connection.username">auro</property> <property name="hibernate.connection.url">jdbc:mysql://3.7.218.151:3306/auroautolocker</property> 
+			<property name="hibernate.connection.password">aurotecGM@21</property> -->
 
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<property name="hbm2ddl.auto">update</property>

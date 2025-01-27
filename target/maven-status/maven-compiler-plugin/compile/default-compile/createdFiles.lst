@@ -8,6 +8,7 @@ com\auro\locker\delete\row\DeleteAndUpdateLockerLockDetails.class
 com\auroLocker\fetch\data\FetchTransactionHistory.class
 com\auroClient\VerifyLockOpen\VerifyLockOpenStatus.class
 com\auroLocker\fetch\data\FetchRefundHistory.class
+com\auto\user\logdetails\HandleUserLogsDetails.class
 com\auro\beans\TerminalHealthPacket.class
 com\locker\operations\LockerOperationViaSms.class
 com\auro\beans\TerminalLockStatusDetail.class
@@ -53,6 +54,7 @@ com\lockretrice\passcodeHandler\PasscodeHandler.class
 com\auro\beans\TransactionHistory.class
 com\auro\beans\CustomerDetails.class
 com\auro\beans\TermwiseLockermalfunction.class
+com\locker\operations\FetchBlockedCustomers.class
 com\auro\beans\TransactionFailedDetails.class
 com\locks\update\TestingServltt.class
 com\locks\payment\status\PaymentStatusHandler.class
@@ -65,6 +67,7 @@ com\locker\operations\FetchToXlFromIvnoice.class
 com\locks\update\UpdateUserPassword.class
 com\auro\controller\SaveSiteRegistration.class
 com\auro\beans\SiteRegistration.class
+com\auro\beans\blockedCustomers.class
 com\auroLocker\fetch\data\FetchPdfDownloadingFile.class
 com\locker\operations\SiteRegOperations.class
 com\lockretrice\passcodeHandler\RetrivePaymentHandler.class
@@ -74,4 +77,5 @@ com\auro\controller\SaveUserCreation.class
 com\auroLocker\fetch\data\FetchStates.class
 com\auro\beans\gstDetails.class
 com\auro\controller\SaveReleaseLocker.class
+com\auro\beans\UserLogs.class
 com\locks\update\UpdateMobileNumber.class

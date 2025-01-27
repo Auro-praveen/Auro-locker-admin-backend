@@ -296,20 +296,20 @@ public class FetchTransactionDetails extends HttpServlet {
 							isPartialOpen.put("false");
 						} else {
 							String isUserPartRetrieved = "false";
-							
+
 							for (PartialRetrieveData partData : partialData) {
-								
+
 								if (partData.getOpenStatus().equalsIgnoreCase("partialopen")) {
 //									isPartialOpen.put("true");
 									isUserPartRetrieved = "true";
 									break;
-									
+
 								} else {
 									isUserPartRetrieved = "false";
 								}
-									
+
 //								partData.getOpenStatus();
-								
+
 							}
 //							isPartialOpen.put("true");
 							isPartialOpen.put(isUserPartRetrieved);
@@ -357,16 +357,20 @@ public class FetchTransactionDetails extends HttpServlet {
 
 						DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
-						double CGST = GlobalVariable
-								.calulcateGstMethod((int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100), "CGST", td.getTerminalid());
-						
-						double SGST = GlobalVariable
-								.calulcateGstMethod((int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100), "SGST", td.getTerminalid());
-						
+						double CGST = GlobalVariable.calulcateGstMethod(
+								(int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100),
+								"CGST", td.getTerminalid());
+
+						double SGST = GlobalVariable.calulcateGstMethod(
+								(int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100),
+								"SGST", td.getTerminalid());
+
 						double totAmount_WithoutGST = Double.parseDouble(decimalFormat
-								.format(((td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100) + CGST + SGST)));
-						
-						double totAmount_WithGST = Math.round(td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100);
+								.format(((td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100)
+										+ CGST + SGST)));
+
+						double totAmount_WithGST = Math
+								.round(td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100);
 
 						CGSTArr.put(CGST);
 						SGSTArr.put(SGST);
@@ -515,14 +519,14 @@ public class FetchTransactionDetails extends HttpServlet {
 
 			lockerNoObj.put("responseCode", responseCode);
 
-		} else if(type.equalsIgnoreCase("getTDbyMobileNo")) {
-			
+		} else if (type.equalsIgnoreCase("getTDbyMobileNo")) {
+
 			String mobileNo = reqObj.getString("mobileNo");
 
 			try {
 
 				String partialHQL = "from PartialRetrieveData where terminalID=:terminalID and dateOfopen=:openDate and mobileNo=:mobileNo and locNo=:lockerNo";
-				
+
 				tdList = (ArrayList<TransactionDetails>) session
 						.createQuery("FROM TransactionDetails where mobileNo='" + mobileNo + "'").getResultList();
 
@@ -545,20 +549,20 @@ public class FetchTransactionDetails extends HttpServlet {
 							isPartialOpen.put("false");
 						} else {
 							String isUserPartRetrieved = "false";
-							
+
 							for (PartialRetrieveData partData : partialData) {
-								
+
 								if (partData.getOpenStatus().equalsIgnoreCase("partialopen")) {
 //									isPartialOpen.put("true");
 									isUserPartRetrieved = "true";
 									break;
-									
+
 								} else {
 									isUserPartRetrieved = "false";
 								}
-									
+
 //								partData.getOpenStatus();
-								
+
 							}
 //							isPartialOpen.put("true");
 							isPartialOpen.put(isUserPartRetrieved);
@@ -606,16 +610,20 @@ public class FetchTransactionDetails extends HttpServlet {
 
 						DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
-						double CGST = GlobalVariable
-								.calulcateGstMethod((int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100), "CGST", td.getTerminalid());
-						
-						double SGST = GlobalVariable
-								.calulcateGstMethod((int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100), "SGST", td.getTerminalid());
-						
+						double CGST = GlobalVariable.calulcateGstMethod(
+								(int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100),
+								"CGST", td.getTerminalid());
+
+						double SGST = GlobalVariable.calulcateGstMethod(
+								(int) (td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100),
+								"SGST", td.getTerminalid());
+
 						double totAmount_WithoutGST = Double.parseDouble(decimalFormat
-								.format(((td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100) + CGST + SGST)));
-						
-						double totAmount_WithGST = Math.round(td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance()/100);
+								.format(((td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100)
+										+ CGST + SGST)));
+
+						double totAmount_WithGST = Math
+								.round(td.getAmount() / 100 + td.getExcess_amount() / 100 + td.getBalance() / 100);
 
 						CGSTArr.put(CGST);
 						SGSTArr.put(SGST);

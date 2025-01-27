@@ -148,15 +148,15 @@ public class FetchUserLoginDetails extends HttpServlet {
 //				session.close();
 //				writer.close();
 			} finally {
-				writer.println(jsonResp.toString());
-				writer.flush();
-				
-				writer.close();
-				session.close();
+
 			}
 		}
 		
-
+		writer.println(jsonResp.toString());
+		writer.flush();
+		
+		writer.close();
+		session.close();
 		
 	}
 }
