@@ -4,19 +4,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 import org.json.JSONArray;
@@ -29,6 +32,7 @@ import com.auro.beans.TransactionHistory;
 import com.auro.beans.paygatorderid_details;
 import com.auro.hibernateUtilities.HibernateUtils;
 import com.locks.gloablVariable.GlobalVariable;
+import com.locks.update.UpdateMobileNumber;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
 import com.razorpay.Payment;
 import com.razorpay.QrCode;
@@ -157,10 +161,10 @@ public class TransactionRefundHandler extends HttpServlet {
 
 										DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
-										double CGST = GlobalVariable
-												.calulcateGstMethod((int) (tdDetails.getAmount() / 100), "CGST", tdDetails.getTerminalid());
-										double SGST = GlobalVariable
-												.calulcateGstMethod((int) (tdDetails.getAmount() / 100), "SGST", tdDetails.getTerminalid());
+										double CGST = GlobalVariable.calulcateGstMethod(
+												(int) (tdDetails.getAmount() / 100), "CGST", tdDetails.getTerminalid());
+										double SGST = GlobalVariable.calulcateGstMethod(
+												(int) (tdDetails.getAmount() / 100), "SGST", tdDetails.getTerminalid());
 
 										double totAmount_WithGST = Double.parseDouble(
 												decimalFormat.format(((tdDetails.getAmount() / 100) + CGST + SGST)));
@@ -170,9 +174,11 @@ public class TransactionRefundHandler extends HttpServlet {
 										if (tdDetails.getExcess_amount() > 0) {
 
 											double Excess_CGST = GlobalVariable.calulcateGstMethod(
-													(int) (tdDetails.getExcess_amount() / 100), "CGST", tdDetails.getTerminalid());
+													(int) (tdDetails.getExcess_amount() / 100), "CGST",
+													tdDetails.getTerminalid());
 											double Excess_SGST = GlobalVariable.calulcateGstMethod(
-													(int) (tdDetails.getExcess_amount() / 100), "SGST", tdDetails.getTerminalid());
+													(int) (tdDetails.getExcess_amount() / 100), "SGST",
+													tdDetails.getTerminalid());
 
 											double Excess_totAmount_withGst = Double.parseDouble(decimalFormat
 													.format(((tdDetails.getExcess_amount() / 100) + CGST + SGST)));
@@ -204,9 +210,11 @@ public class TransactionRefundHandler extends HttpServlet {
 									DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
 									double CGST = GlobalVariable.calulcateGstMethod(
-											(int) (paygatorderid_details.getAmount() / 100), "CGST", paygatorderid_details.getTerminaLID());
+											(int) (paygatorderid_details.getAmount() / 100), "CGST",
+											paygatorderid_details.getTerminaLID());
 									double SGST = GlobalVariable.calulcateGstMethod(
-											(int) (paygatorderid_details.getAmount() / 100), "SGST", paygatorderid_details.getTerminaLID());
+											(int) (paygatorderid_details.getAmount() / 100), "SGST",
+											paygatorderid_details.getTerminaLID());
 
 									double totAmount_WithGST = Double.parseDouble(decimalFormat
 											.format(((paygatorderid_details.getAmount() / 100) + CGST + SGST)));
@@ -282,8 +290,10 @@ public class TransactionRefundHandler extends HttpServlet {
 //						double totAmount_WithoutGST = Double.parseDouble(decimalFormat
 //								.format(((tdDetails.getAmount() / 100 + tdDetails.getExcess_amount() / 100) + CGST + SGST)));
 
-						double CGST = GlobalVariable.calulcateGstMethod((int) (tdDetails.getAmount() / 100), "CGST", tdDetails.getTerminalid());
-						double SGST = GlobalVariable.calulcateGstMethod((int) (tdDetails.getAmount() / 100), "SGST", tdDetails.getTerminalid());
+						double CGST = GlobalVariable.calulcateGstMethod((int) (tdDetails.getAmount() / 100), "CGST",
+								tdDetails.getTerminalid());
+						double SGST = GlobalVariable.calulcateGstMethod((int) (tdDetails.getAmount() / 100), "SGST",
+								tdDetails.getTerminalid());
 
 						double totAmount_WithGST = Double
 								.parseDouble(decimalFormat.format(((tdDetails.getAmount() / 100) + CGST + SGST)));
@@ -292,10 +302,10 @@ public class TransactionRefundHandler extends HttpServlet {
 
 						if (tdDetails.getExcess_amount() > 0) {
 
-							double Excess_CGST = GlobalVariable
-									.calulcateGstMethod((int) (tdDetails.getExcess_amount() / 100), "CGST", tdDetails.getTerminalid());
-							double Excess_SGST = GlobalVariable
-									.calulcateGstMethod((int) (tdDetails.getExcess_amount() / 100), "SGST", tdDetails.getTerminalid());
+							double Excess_CGST = GlobalVariable.calulcateGstMethod(
+									(int) (tdDetails.getExcess_amount() / 100), "CGST", tdDetails.getTerminalid());
+							double Excess_SGST = GlobalVariable.calulcateGstMethod(
+									(int) (tdDetails.getExcess_amount() / 100), "SGST", tdDetails.getTerminalid());
 
 							double Excess_totAmount_withGst = Double.parseDouble(
 									decimalFormat.format(((tdDetails.getExcess_amount() / 100) + CGST + SGST)));
@@ -364,6 +374,8 @@ public class TransactionRefundHandler extends HttpServlet {
 				if (!refundId.isEmpty()) {
 					// // (" after try catch : "+refundId);
 
+					refundSuccessMessage(mobileNo, termId, String.valueOf(refAmount), lockerNo);
+
 					razorpayAmountRefund.setAmount(refAmount * 100);
 					razorpayAmountRefund.setUserName(userName);
 					razorpayAmountRefund.setDateOfPayment(dateOfPaymentDone);
@@ -381,7 +393,7 @@ public class TransactionRefundHandler extends HttpServlet {
 					} else {
 						refundResp.put("responseCode", "refundfail");
 					}
-					
+
 				} else {
 					refundResp.put("responseCode", "refundfail");
 				}
@@ -488,6 +500,7 @@ public class TransactionRefundHandler extends HttpServlet {
 			if (!refId.isEmpty()) {
 				// // System.out.println("refund IDId: "+ refund.get("id"));
 				refundId = refund.get("id");
+
 			}
 
 		} catch (Exception e) {
@@ -495,5 +508,37 @@ public class TransactionRefundHandler extends HttpServlet {
 			e.printStackTrace();
 		}
 		return refundId;
+	}
+
+	private void refundSuccessMessage(String mobileno, String terminalID, String amt, String locno) {
+		// TODO Auto-generated method stub
+
+		// String sms="";
+
+		LocalDate cDate = LocalDate.now();
+		LocalDate amountRefDate = cDate.plusDays(5);
+
+		// Refund of {#var#} for your Locker {#var#} is processed & shall reflect in
+		// your payment source by {#var#}. Call 7204076777 for any concerns, T&C apply,
+		// TUCKPOD
+
+		String sms = "https://otp2.aclgateway.com/OTP_ACL_Web/OtpRequestListener?enterpriseid=tuckpotp&subEnterpriseid=tuckpotp&pusheid=tuckpotp&pushepwd=tuckpotp13&msisdn=91"
+				+ mobileno + "&sender=TUCKPD&msgtext=Refund%20of%20" + amt + "%20for%20your%20Locker%20" + locno
+				+ "%20is%20processed%20%26%20shall%20reflect%20in%20your%20payment%20source%20by" + amountRefDate
+				+ ".%20Call%207204076777%20for%20any%20concerns,%20T%26C%20apply,%20TUCKPOD";
+
+		/*
+		 * smsSentDetails sd=new smsSentDetails(); sd.setTerminalID(terminalID);
+		 * sd.setMobileNumber(mobileno);
+		 * sd.setSms("");//sms.substring(sms.indexOf("?")+1));
+		 * sd.setLockerNo(terminalID); sd.setSmsType("terminalinactive");
+		 * sd.setDate_of_sent(new java.sql.Date(System.currentTimeMillis()));
+		 * sd.setTime_of_sent(new java.sql.Time(System.currentTimeMillis())); boolean
+		 * t=SaveObjects.savesmsinfo(sd); if(t==false) sms="";
+		 */
+
+		UpdateMobileNumber updateMobileNumber = new UpdateMobileNumber();
+		updateMobileNumber.sendData(sms);
+
 	}
 }

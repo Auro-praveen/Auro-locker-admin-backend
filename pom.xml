@@ -6,7 +6,7 @@
 
   <groupId>com.auro.mainLocker</groupId>
   <artifactId>AuroAutoLocker</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>3.12.13-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>AuroAutoLocker Maven Webapp</name>
@@ -33,14 +33,27 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>8.0.25</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+<dependency>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
+    <version>6.0.0</version>
+    <scope>provided</scope>
+</dependency>
+
 
 	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-	<dependency>
+	
+	<!-- 
+		<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>javax.servlet-api</artifactId>
 	    <version>4.0.1</version>
-	<!--      <scope>provided</scope>    -->
-	</dependency>
+	</dependency>	
+		
+	-->
+
 	
 	     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 	<dependency>

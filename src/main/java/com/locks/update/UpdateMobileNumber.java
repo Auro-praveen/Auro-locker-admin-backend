@@ -13,11 +13,11 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 import org.json.JSONObject;
@@ -170,7 +170,7 @@ public class UpdateMobileNumber extends HttpServlet {
             System.setProperty("java.net.useSystemProxies", "true");
            
             responseCode = httpConn.getResponseCode();
-            System.out.println("responseCode" + responseCode);
+//            System.out.println("responseCode" + responseCode);
                            
             BufferedReader in = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
             String inputLine;

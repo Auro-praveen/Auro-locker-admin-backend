@@ -8,11 +8,11 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -77,6 +77,7 @@ public class SiteRegOperations extends HttpServlet {
 				siteRegisterObject.put("lattitude", siteRegistration.getLattitude());
 				siteRegisterObject.put("longitude", siteRegistration.getLongitude());
 				siteRegisterObject.put("siteStatus", siteRegistration.getStatus());
+				siteRegisterObject.put("outletType", siteRegistration.getOutletType());
 
 			}
 
@@ -151,7 +152,9 @@ public class SiteRegOperations extends HttpServlet {
 				siteRegistration.setMobileNo(requestedJsonObject.getString("mobileNumber"));
 				siteRegistration.setTerminalid(requestedJsonObject.getString("terminalId"));
 				siteRegistration.setNo_of_locks(requestedJsonObject.getString("noOfLockers"));
-				siteRegistration.setNo_of_locks(requestedJsonObject.getString("status"));
+				siteRegistration.setStatus(requestedJsonObject.getString("status"));
+				
+				siteRegistration.setOutletType(requestedJsonObject.getString("outletType"));
 
 				Transaction transaction = session.beginTransaction();
 
@@ -252,7 +255,7 @@ public class SiteRegOperations extends HttpServlet {
 
 			Session session = HibernateUtils.getSession();
 
-			String hql = "FROM SiteRegistration FROM state=:STATE";
+			String hql = "FROM SiteRegistration WHERE state=:STATE";
 
 			try {
 
@@ -260,9 +263,7 @@ public class SiteRegOperations extends HttpServlet {
 						.setParameter("STATE", requestedJsonObject.getString("statename")).getResultList();
 
 				if (siteRegList.size() > 0) {
-
 					response.setStatus(HttpServletResponse.SC_OK);
-
 					for (SiteRegistration siteReg : siteRegList) {
 						slno.put(siteReg.getSlno());
 						area.put(siteReg.getArea());
@@ -311,7 +312,7 @@ public class SiteRegOperations extends HttpServlet {
 				// TODO: handle exception	
 				response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 				respObject.put("response", HttpServletResponse.SC_NO_CONTENT);
-
+				e.printStackTrace();
 			} finally {
 
 				writer.append(respObject.toString());

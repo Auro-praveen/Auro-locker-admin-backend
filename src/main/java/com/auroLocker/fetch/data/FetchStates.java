@@ -7,11 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.ServletException;
+//import javax.servlet.annotation.WebServlet;
+//import javax.servlet.http.HttpServlet;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 import org.json.JSONObject;
@@ -25,7 +31,7 @@ import com.auro.hibernateUtilities.HibernateUtils;
 
 @WebServlet("/FetchStates")
 public class FetchStates extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -88,7 +94,8 @@ public class FetchStates extends HttpServlet {
 				String query = "SELECT area, terminalid FROM SiteRegistration WHERE state = :State AND status=:status";
 //				allStates = session.createQuery(query).setParameter("State", pathVar).getResultList();
 
-				List<Object[]> stateResult = session.createQuery(query).setParameter("State", pathVar).setParameter("status", "ACTIVE").getResultList();
+				List<Object[]> stateResult = session.createQuery(query).setParameter("State", pathVar)
+						.setParameter("status", "ACTIVE").getResultList();
 
 				if (stateResult.size() > 0) {
 					for (Object[] areaAndTermIDarr : stateResult) {
@@ -127,8 +134,7 @@ public class FetchStates extends HttpServlet {
 
 		String jsonBody = new BufferedReader(new InputStreamReader(request.getInputStream())).lines()
 				.collect(Collectors.joining("/"));
-		
-		
+
 		JSONObject reqObj = new JSONObject(jsonBody);
 		Session session = null;
 		String type = reqObj.getString("PacketType");

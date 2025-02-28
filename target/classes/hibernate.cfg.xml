@@ -23,13 +23,14 @@
 			<property name="hibernate.connection.password">root</property> -->
 
 
-		<property name="hibernate.connection.username">praveen</property>
-		<property name="hibernate.connection.url">jdbc:mysql://192.168.0.186:3306/auroautolocker</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property>
 		<property name="hibernate.connection.password">root</property>
 
-		<!-- for production app.tuckit.in <property name="hibernate.connection.username">root</property> 
-			<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
-			<property name="hibernate.connection.password">aurotecGM@21</property> -->
+	<!-- for production app.tuckit.in 
+	<property name="hibernate.connection.username">root</property> 
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
+		<property name="hibernate.connection.password">aurotecGM@21</property> -->
 
 
 

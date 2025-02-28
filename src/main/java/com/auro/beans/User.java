@@ -1,5 +1,6 @@
 package com.auro.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,8 +29,10 @@ public class User {
 	
 	private String userpermissions;
 	
+	@Column(name = "site_name", length = 255)
 	private String site_name;
 	
+	@Column(name = "site_location", length = 255)
 	private String site_location;
 	
 	private String app_access_allowed;
