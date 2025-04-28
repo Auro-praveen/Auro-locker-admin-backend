@@ -1,0 +1,2772 @@
+diff --git a/pom.xml b/pom.xml
+index 339f991..953174c 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -6,7 +6,7 @@
+ 
+   <groupId>com.auro.mainLocker</groupId>
+   <artifactId>AuroAutoLocker</artifactId>
+-  <version>3.12.13-SNAPSHOT</version>
++  <version>3.14.16-SNAPSHOT</version>
+   <packaging>war</packaging>
+ 
+   <name>AuroAutoLocker Maven Webapp</name>
+@@ -35,24 +35,26 @@
+ 	</dependency>
+ 	
+ 	<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+-<dependency>
++	<!-- 
++		
++		<dependency>
+     <groupId>jakarta.servlet</groupId>
+     <artifactId>jakarta.servlet-api</artifactId>
+     <version>6.0.0</version>
+     <scope>provided</scope>
+ </dependency>
++	-->
+ 
+ 
+ 	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+ 	
+-	<!-- 
+ 		<dependency>
+ 	    <groupId>javax.servlet</groupId>
+ 	    <artifactId>javax.servlet-api</artifactId>
+ 	    <version>4.0.1</version>
+ 	</dependency>	
+ 		
+-	-->
++	
+ 
+ 	
+ 	     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+diff --git a/src/main/java/com/auro/beans/amountreceiveddetails.java b/src/main/java/com/auro/beans/amountreceiveddetails.java
+index 3d0f8a2..3aa549a 100644
+--- a/src/main/java/com/auro/beans/amountreceiveddetails.java
++++ b/src/main/java/com/auro/beans/amountreceiveddetails.java
+@@ -148,17 +148,7 @@ public class amountreceiveddetails   {
+ 	private Time received_time;
+ 	
+ 	private String terminalid ;
+-	
+-
+-	
+- 
+-	
+-	
+ 	private String lockNo ;
+-	
+- 	
+-	
+-	 
+ 	private String stateName;
+ 	private String gstNumber;
+ 	private float sgstPercentage;
+diff --git a/src/main/java/com/auro/controller/LockerLocksDetails.java b/src/main/java/com/auro/controller/LockerLocksDetails.java
+index 9127115..63fa42f 100644
+--- a/src/main/java/com/auro/controller/LockerLocksDetails.java
++++ b/src/main/java/com/auro/controller/LockerLocksDetails.java
+@@ -9,11 +9,11 @@ import java.util.List;
+ import java.util.stream.Collector;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Query;
+ import org.hibernate.SQLQuery;
+@@ -27,11 +27,11 @@ import com.auro.beans.SiteRegistration;
+ import com.auro.hibernateUtilities.HibernateUtils;
+ import com.fasterxml.jackson.databind.ObjectMapper;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ 
+ /**
+diff --git a/src/main/java/com/auro/controller/SaveFirmwareUpdate.java b/src/main/java/com/auro/controller/SaveFirmwareUpdate.java
+index 3b96a36..99916f6 100644
+--- a/src/main/java/com/auro/controller/SaveFirmwareUpdate.java
++++ b/src/main/java/com/auro/controller/SaveFirmwareUpdate.java
+@@ -35,13 +35,21 @@ import java.util.stream.Collectors;
+ //import javax.servlet.http.HttpServletResponse;
+ //import javax.servlet.http.Part;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.MultipartConfig;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+-import jakarta.servlet.http.Part;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.MultipartConfig;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.http.Part;
++
++import javax.servlet.ServletException;
++import javax.servlet.annotation.MultipartConfig;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++import javax.servlet.http.Part;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/auro/controller/SaveLockerCategory.java b/src/main/java/com/auro/controller/SaveLockerCategory.java
+index 90602aa..daa99f5 100644
+--- a/src/main/java/com/auro/controller/SaveLockerCategory.java
++++ b/src/main/java/com/auro/controller/SaveLockerCategory.java
+@@ -11,17 +11,17 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.apache.log4j.LogManager;
+ import org.apache.log4j.Logger;
+diff --git a/src/main/java/com/auro/controller/SaveReleaseLocker.java b/src/main/java/com/auro/controller/SaveReleaseLocker.java
+index 1a8fe3b..bb77113 100644
+--- a/src/main/java/com/auro/controller/SaveReleaseLocker.java
++++ b/src/main/java/com/auro/controller/SaveReleaseLocker.java
+@@ -9,17 +9,17 @@ import java.util.Date;
+ import java.util.Iterator;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONObject;
+diff --git a/src/main/java/com/auro/controller/SaveSiteRegistration.java b/src/main/java/com/auro/controller/SaveSiteRegistration.java
+index 1e60b35..9e25ae6 100644
+--- a/src/main/java/com/auro/controller/SaveSiteRegistration.java
++++ b/src/main/java/com/auro/controller/SaveSiteRegistration.java
+@@ -9,17 +9,17 @@ import java.util.Calendar;
+ import java.util.Date;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Hibernate;
+ import org.hibernate.Session;
+diff --git a/src/main/java/com/auro/controller/SaveUserCreation.java b/src/main/java/com/auro/controller/SaveUserCreation.java
+index 7433fa8..377c378 100644
+--- a/src/main/java/com/auro/controller/SaveUserCreation.java
++++ b/src/main/java/com/auro/controller/SaveUserCreation.java
+@@ -8,17 +8,17 @@ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/auro/controller/TerminalIdDetails.java b/src/main/java/com/auro/controller/TerminalIdDetails.java
+index 68759e6..44d14ec 100644
+--- a/src/main/java/com/auro/controller/TerminalIdDetails.java
++++ b/src/main/java/com/auro/controller/TerminalIdDetails.java
+@@ -1,16 +1,18 @@
+ package com.auro.controller;
+ 
+ import java.io.IOException;
+-//import javax.servlet.ServletException;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ 
+ /**
+diff --git a/src/main/java/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.java b/src/main/java/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.java
+index eb51813..93e60a0 100644
+--- a/src/main/java/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.java
++++ b/src/main/java/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.java
+@@ -3,17 +3,17 @@ package com.auro.locker.delete.row;
+ import java.io.IOException;
+ import java.io.PrintWriter;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Query;
+ import org.hibernate.Session;
+diff --git a/src/main/java/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.java b/src/main/java/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.java
+index 8361f56..b9155c5 100644
+--- a/src/main/java/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.java
++++ b/src/main/java/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.java
+@@ -6,17 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONObject;
+ 
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchDeviceHealth.java b/src/main/java/com/auroLocker/fetch/data/FetchDeviceHealth.java
+index 165c51f..cee74e1 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchDeviceHealth.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchDeviceHealth.java
+@@ -16,17 +16,17 @@ import java.util.concurrent.TimeUnit;
+ import java.util.stream.Collector;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchFailedTransaction.java b/src/main/java/com/auroLocker/fetch/data/FetchFailedTransaction.java
+index 407439d..f80dd37 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchFailedTransaction.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchFailedTransaction.java
+@@ -8,17 +8,17 @@ import java.sql.Date;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchLockerStatus.java b/src/main/java/com/auroLocker/fetch/data/FetchLockerStatus.java
+index 69a2087..44bf550 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchLockerStatus.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchLockerStatus.java
+@@ -15,19 +15,17 @@ import java.util.Map;
+ import java.util.concurrent.TimeUnit;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.RequestDispatcher;
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-//import javax.servlet.http.HttpServletResponseWrapper;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchLockersForChart.java b/src/main/java/com/auroLocker/fetch/data/FetchLockersForChart.java
+index 00e3226..fd2835c 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchLockersForChart.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchLockersForChart.java
+@@ -18,17 +18,17 @@ import java.util.Map.Entry;
+ import java.util.TreeMap;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.query.Query;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchLocksDetail.java b/src/main/java/com/auroLocker/fetch/data/FetchLocksDetail.java
+index 511f116..797e525 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchLocksDetail.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchLocksDetail.java
+@@ -8,11 +8,17 @@ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchLossedCustomers.java b/src/main/java/com/auroLocker/fetch/data/FetchLossedCustomers.java
+index 96a92e2..1b93419 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchLossedCustomers.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchLossedCustomers.java
+@@ -9,17 +9,17 @@ import java.sql.Time;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchMalfunctioningLocks.java b/src/main/java/com/auroLocker/fetch/data/FetchMalfunctioningLocks.java
+index de1c1be..20204a6 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchMalfunctioningLocks.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchMalfunctioningLocks.java
+@@ -9,17 +9,17 @@ import java.util.Iterator;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchPartialRetrieve.java b/src/main/java/com/auroLocker/fetch/data/FetchPartialRetrieve.java
+index ed3cc4a..eeb0e15 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchPartialRetrieve.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchPartialRetrieve.java
+@@ -8,17 +8,17 @@ import java.sql.Date;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchPayOrderIdDetails.java b/src/main/java/com/auroLocker/fetch/data/FetchPayOrderIdDetails.java
+index 2b42d3d..9970d65 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchPayOrderIdDetails.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchPayOrderIdDetails.java
+@@ -8,17 +8,17 @@ import java.sql.Date;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchPdfDownloadingFile.java b/src/main/java/com/auroLocker/fetch/data/FetchPdfDownloadingFile.java
+index d584f3f..f4adf73 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchPdfDownloadingFile.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchPdfDownloadingFile.java
+@@ -11,17 +11,17 @@ import java.io.OutputStream;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONObject;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchRefundHistory.java b/src/main/java/com/auroLocker/fetch/data/FetchRefundHistory.java
+index 6abbe1e..0af8f47 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchRefundHistory.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchRefundHistory.java
+@@ -8,17 +8,17 @@ import java.sql.Date;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchStates.java b/src/main/java/com/auroLocker/fetch/data/FetchStates.java
+index 6e949c2..8b3a640 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchStates.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchStates.java
+@@ -7,17 +7,17 @@ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-//import javax.servlet.ServletException;
+-//import javax.servlet.annotation.WebServlet;
+-//import javax.servlet.http.HttpServlet;
+-//import javax.servlet.http.HttpServletRequest;
+-//import javax.servlet.http.HttpServletResponse;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONObject;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchToXlSheet.java b/src/main/java/com/auroLocker/fetch/data/FetchToXlSheet.java
+index 0ebbbdd..47e0d36 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchToXlSheet.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchToXlSheet.java
+@@ -14,11 +14,17 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchTransactionDetails.java b/src/main/java/com/auroLocker/fetch/data/FetchTransactionDetails.java
+index 8c2a430..cbd5e30 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchTransactionDetails.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchTransactionDetails.java
+@@ -14,11 +14,17 @@ import java.util.List;
+ import java.util.concurrent.TimeUnit;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchTransactionHistory.java b/src/main/java/com/auroLocker/fetch/data/FetchTransactionHistory.java
+index a54ce94..a463cd3 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchTransactionHistory.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchTransactionHistory.java
+@@ -11,11 +11,17 @@ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/auroLocker/fetch/data/FetchUserLoginDetails.java b/src/main/java/com/auroLocker/fetch/data/FetchUserLoginDetails.java
+index da60db0..bd373e1 100644
+--- a/src/main/java/com/auroLocker/fetch/data/FetchUserLoginDetails.java
++++ b/src/main/java/com/auroLocker/fetch/data/FetchUserLoginDetails.java
+@@ -11,11 +11,17 @@ import java.util.stream.Collectors;
+ 
+ import javax.persistence.NoResultException;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.apache.log4j.Logger;
+ import org.apache.log4j.PropertyConfigurator;
+diff --git a/src/main/java/com/auto/user/logdetails/HandleUserLogsDetails.java b/src/main/java/com/auto/user/logdetails/HandleUserLogsDetails.java
+index c1fd8af..b46e15c 100644
+--- a/src/main/java/com/auto/user/logdetails/HandleUserLogsDetails.java
++++ b/src/main/java/com/auto/user/logdetails/HandleUserLogsDetails.java
+@@ -9,11 +9,17 @@ import java.sql.Time;
+ import java.util.ArrayList;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Hibernate;
+ import org.hibernate.Session;
+diff --git a/src/main/java/com/auto/user/logdetails/UserLogDetails.java b/src/main/java/com/auto/user/logdetails/UserLogDetails.java
+index 9655596..7798096 100644
+--- a/src/main/java/com/auto/user/logdetails/UserLogDetails.java
++++ b/src/main/java/com/auto/user/logdetails/UserLogDetails.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/locker/operations/FetchActiveTransactionMallAuth.java b/src/main/java/com/locker/operations/FetchActiveTransactionMallAuth.java
+index 3ff46ba..f82b3e3 100644
+--- a/src/main/java/com/locker/operations/FetchActiveTransactionMallAuth.java
++++ b/src/main/java/com/locker/operations/FetchActiveTransactionMallAuth.java
+@@ -10,11 +10,17 @@ import java.util.Collection;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/locker/operations/FetchBlockedCustomers.java b/src/main/java/com/locker/operations/FetchBlockedCustomers.java
+index ab0b2b0..08958f7 100644
+--- a/src/main/java/com/locker/operations/FetchBlockedCustomers.java
++++ b/src/main/java/com/locker/operations/FetchBlockedCustomers.java
+@@ -8,11 +8,17 @@ import java.sql.Date;
+ import java.util.ArrayList;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/locker/operations/FetchHistoryForMallAuth.java b/src/main/java/com/locker/operations/FetchHistoryForMallAuth.java
+index 5cf8031..33f2beb 100644
+--- a/src/main/java/com/locker/operations/FetchHistoryForMallAuth.java
++++ b/src/main/java/com/locker/operations/FetchHistoryForMallAuth.java
+@@ -12,11 +12,17 @@ import java.util.Collection;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+diff --git a/src/main/java/com/locker/operations/FetchHistoryForMallAuthFromInvoice.java b/src/main/java/com/locker/operations/FetchHistoryForMallAuthFromInvoice.java
+index 1a13f4b..86f9475 100644
+--- a/src/main/java/com/locker/operations/FetchHistoryForMallAuthFromInvoice.java
++++ b/src/main/java/com/locker/operations/FetchHistoryForMallAuthFromInvoice.java
+@@ -12,11 +12,17 @@ import java.util.Collection;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.hibernate.Transaction;
+@@ -245,7 +251,7 @@ public class FetchHistoryForMallAuthFromInvoice extends HttpServlet {
+ 				Date fromDate = Date.valueOf(reqObj.getString("fromDate"));
+ 				Date toDate = Date.valueOf(reqObj.getString("toDate"));
+ 
+-				String hql = "from invoiceDetails where terminalid IN (:termId) and invoice_date between :fromDate and : toDate";
++				String hql = "from invoiceDetails where terminalid IN (:termId) and invoice_date between :fromDate and :toDate";
+ 
+ 				List<invoiceDetails> mallAuthHistList = session.createQuery(hql)
+ 						.setParameterList("termId", terminalIdList).setParameter("fromDate", fromDate)
+diff --git a/src/main/java/com/locker/operations/FetchLockerDetailsForGmail.java b/src/main/java/com/locker/operations/FetchLockerDetailsForGmail.java
+index f8bf16e..5c81d02 100644
+--- a/src/main/java/com/locker/operations/FetchLockerDetailsForGmail.java
++++ b/src/main/java/com/locker/operations/FetchLockerDetailsForGmail.java
+@@ -30,12 +30,12 @@ import javax.mail.internet.InternetAddress;
+ import javax.mail.internet.MimeMessage;
+ 
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+ 
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
+ 
+ //import jakarta.servlet.ServletException;
+ //import jakarta.servlet.annotation.WebServlet;
+@@ -55,10 +55,12 @@ import com.locks.gloablVariable.GlobalVariable;
+ 
+ @WebServlet("/FetchLockerDetailsForGmail")
+ public class FetchLockerDetailsForGmail extends HttpServlet {
++	
+ 	private static final long serialVersionUID = 1L;
+-
++	
+ 	final String fromEmail = "praveen@aurodisplay.com"; // requires valid gmail id
+ 	final String password = "Praveen@au6"; // correct password for gmail id
++	
+ 
+ //	final String fromEmail = "info@tuckpod.com"; // requires valid gmail id 
+ //	final String password = "infotp2023"; // correct password for gmail id 
+diff --git a/src/main/java/com/locker/operations/FetchPartialRetrieveDetails.java b/src/main/java/com/locker/operations/FetchPartialRetrieveDetails.java
+index b081162..681691e 100644
+--- a/src/main/java/com/locker/operations/FetchPartialRetrieveDetails.java
++++ b/src/main/java/com/locker/operations/FetchPartialRetrieveDetails.java
+@@ -10,11 +10,17 @@ import java.util.Arrays;
+ import java.util.Collection;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/locker/operations/FetchToXlFromIvnoice.java b/src/main/java/com/locker/operations/FetchToXlFromIvnoice.java
+index a14fb96..3a6b25d 100644
+--- a/src/main/java/com/locker/operations/FetchToXlFromIvnoice.java
++++ b/src/main/java/com/locker/operations/FetchToXlFromIvnoice.java
+@@ -12,11 +12,17 @@ import java.util.Collection;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/locker/operations/HandleCustomerEvents.java b/src/main/java/com/locker/operations/HandleCustomerEvents.java
+index f8e4921..adca3df 100644
+--- a/src/main/java/com/locker/operations/HandleCustomerEvents.java
++++ b/src/main/java/com/locker/operations/HandleCustomerEvents.java
+@@ -7,14 +7,21 @@ import java.io.PrintWriter;
+ import java.sql.Date;
+ import java.sql.Time;
+ import java.text.DateFormat;
++import java.util.ArrayList;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Hibernate;
+ import org.hibernate.Session;
+@@ -22,6 +29,8 @@ import org.json.JSONObject;
+ 
+ import com.auro.beans.CustomerDetails;
+ import com.auro.beans.CustomerEvents;
++import com.auro.beans.PartialRetrieveData;
++import com.auro.beans.TransactionDetails;
+ import com.auro.hibernateUtilities.HibernateUtils;
+ import com.google.gson.Gson;
+ import com.google.gson.GsonBuilder;
+@@ -86,20 +95,60 @@ public class HandleCustomerEvents extends HttpServlet {
+ 				try {
+ //					FollowUpTransactionDetails
+ 
+-					String hql = "SELECT new com.opDTO.beans.FollowUpTransactionDetails("
++//					String hql = "SELECT new com.opDTO.beans.FollowUpTransactionDetails("
++//							+ "t.slno, t.customerName, t.mobileNo, t.date_of_open, t.time_of_open, "
++//							+ "t.terminalid, t.no_of_hours, t.amount, t.status, " + "t.excess_hours, t.excess_amount, "
++//							+ "t.lockNo, t.passcode,t.balance, t.itemsStored, "
++//							+ "t.browtype, t.partretamount) FROM TransactionDetails t WHERE "
++//							+ "t.excess_amount > 0 OR status = 'payFailPaylater'";
++					
++					
++					String hql = "SELECT new com.opDTO.beans.FollowUpTransactionDetails(" 
+ 							+ "t.slno, t.customerName, t.mobileNo, t.date_of_open, t.time_of_open, "
+ 							+ "t.terminalid, t.no_of_hours, t.amount, t.status, " + "t.excess_hours, t.excess_amount, "
+ 							+ "t.lockNo, t.passcode,t.balance, t.itemsStored, "
+-							+ "t.browtype, t.partretamount) FROM TransactionDetails t WHERE "
+-							+ "t.excess_amount > 0 OR partretamount > 0";
++							+ "t.browtype, CASE WHEN p.openStatus IS NULL OR p.openStatus = '' THEN 0 "
++							+ "ELSE 5 "
++							+ "END AS partial_amount) "
++							+ "FROM TransactionDetails t LEFT JOIN PartialRetrieveData p ON p.dateOfopen = t.date_of_open AND p.terminalID=t.terminalid "
++							+ "AND p.mobileNo = t.mobileNo AND p.locNo = t.lockNo WHERE "
++							+ "t.excess_amount > 0 OR status = 'payFailPaylater'";
+ 
+ 					List<FollowUpTransactionDetails> followUpDetails = session.createQuery(hql).getResultList();
+ 
+ 					if (followUpDetails.size() > 0) {
++
++						// praveen modified here 16-04-2025
++
++						List<FollowUpTransactionDetails> followUpList = new ArrayList<FollowUpTransactionDetails>();
++
++//						for (FollowUpTransactionDetails followUpTransactionDetails : followUpDetails) {
++//							String partialHQL = "from PartialRetrieveData where terminalID=:terminalID and dateOfopen=:openDate and mobileNo=:mobileNo and locNo=:lockerNo";
++//
++//							List<PartialRetrieveData> partialData = session.createQuery(partialHQL)
++//									.setParameter("terminalID", followUpTransactionDetails.getTerminalid())
++//									.setParameter("openDate", followUpTransactionDetails.getDate_of_open())
++//									.setParameter("mobileNo", followUpTransactionDetails.getMobileNo())
++//									.setParameter("lockerNo", followUpTransactionDetails.getLockNo()).getResultList();
++//
++//							if (!partialData.isEmpty()) {
++//								followUpTransactionDetails.setPartretamount(5);
++//							} else {
++//								followUpTransactionDetails.setPartretamount(0);
++//							}
++//
++//							followUpList.add(followUpTransactionDetails);
++//
++//						}
++
+ 						respObj.put("response", HttpServletResponse.SC_OK);
+ 						Gson gson = new Gson();
+ 						String details = gson.toJson(followUpDetails);
+ 
++//						respObj.put("response", HttpServletResponse.SC_OK);
++//						Gson gson = new Gson();
++//						String details = gson.toJson(followUpDetails);
++
+ 						respObj.put("tdDetails", details);
+ 					} else {
+ 						respObj.put("response", HttpServletResponse.SC_NO_CONTENT);
+@@ -125,7 +174,7 @@ public class HandleCustomerEvents extends HttpServlet {
+ //				System.out.println(reqObj);
+ 
+ 				Date selDate = Date.valueOf(reqObj.get("selectedDate").toString());
+-				
++
+ //				System.out.println(selDate);
+ 
+ 				String hql = "FROM CustomerEvents WHERE eventDate=:date";
+diff --git a/src/main/java/com/locker/operations/LockerOperationViaSms.java b/src/main/java/com/locker/operations/LockerOperationViaSms.java
+index 8973d7f..f93f4ee 100644
+--- a/src/main/java/com/locker/operations/LockerOperationViaSms.java
++++ b/src/main/java/com/locker/operations/LockerOperationViaSms.java
+@@ -11,11 +11,17 @@ import java.text.SimpleDateFormat;
+ import java.util.Date;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONObject;
+diff --git a/src/main/java/com/locker/operations/MallAuthorityOperations.java b/src/main/java/com/locker/operations/MallAuthorityOperations.java
+index e67e34c..c5cbf17 100644
+--- a/src/main/java/com/locker/operations/MallAuthorityOperations.java
++++ b/src/main/java/com/locker/operations/MallAuthorityOperations.java
+@@ -12,11 +12,17 @@ import java.util.ArrayList;
+ import java.util.concurrent.TimeUnit;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/locker/operations/SiteRegOperations.java b/src/main/java/com/locker/operations/SiteRegOperations.java
+index c8085de..518a4f4 100644
+--- a/src/main/java/com/locker/operations/SiteRegOperations.java
++++ b/src/main/java/com/locker/operations/SiteRegOperations.java
+@@ -8,11 +8,17 @@ import java.io.Writer;
+ import java.util.ArrayList;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Hibernate;
+ import org.hibernate.Session;
+diff --git a/src/main/java/com/locker/operations/UserOperationHandler.java b/src/main/java/com/locker/operations/UserOperationHandler.java
+index 1ee6010..33ff1ff 100644
+--- a/src/main/java/com/locker/operations/UserOperationHandler.java
++++ b/src/main/java/com/locker/operations/UserOperationHandler.java
+@@ -9,11 +9,17 @@ import java.util.List;
+ import java.util.stream.Collector;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/lockretrice/passcodeHandler/OpenLockHandler.java b/src/main/java/com/lockretrice/passcodeHandler/OpenLockHandler.java
+index c0284b2..4b041b6 100644
+--- a/src/main/java/com/lockretrice/passcodeHandler/OpenLockHandler.java
++++ b/src/main/java/com/lockretrice/passcodeHandler/OpenLockHandler.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONObject;
+ 
+diff --git a/src/main/java/com/lockretrice/passcodeHandler/PasscodeHandler.java b/src/main/java/com/lockretrice/passcodeHandler/PasscodeHandler.java
+index 65ed6cf..28a9849 100644
+--- a/src/main/java/com/lockretrice/passcodeHandler/PasscodeHandler.java
++++ b/src/main/java/com/lockretrice/passcodeHandler/PasscodeHandler.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONArray;
+ import org.json.JSONObject;
+diff --git a/src/main/java/com/lockretrice/passcodeHandler/PaymentConfirm.java b/src/main/java/com/lockretrice/passcodeHandler/PaymentConfirm.java
+index f7e9016..d9546c4 100644
+--- a/src/main/java/com/lockretrice/passcodeHandler/PaymentConfirm.java
++++ b/src/main/java/com/lockretrice/passcodeHandler/PaymentConfirm.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONObject;
+ 
+diff --git a/src/main/java/com/lockretrice/passcodeHandler/RetrivePaymentHandler.java b/src/main/java/com/lockretrice/passcodeHandler/RetrivePaymentHandler.java
+index 9a64950..e2d33eb 100644
+--- a/src/main/java/com/lockretrice/passcodeHandler/RetrivePaymentHandler.java
++++ b/src/main/java/com/lockretrice/passcodeHandler/RetrivePaymentHandler.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONObject;
+ 
+diff --git a/src/main/java/com/locks/gloablVariable/GlobalVariable.java b/src/main/java/com/locks/gloablVariable/GlobalVariable.java
+index 4a1795d..c4ad921 100644
+--- a/src/main/java/com/locks/gloablVariable/GlobalVariable.java
++++ b/src/main/java/com/locks/gloablVariable/GlobalVariable.java
+@@ -19,12 +19,16 @@ public class GlobalVariable {
+ 
+ 	public static Map<String, String> userDetails = new HashMap<>();
+ 	public static Map<String, ArrayList<String>> openTerminalLockers = new HashMap<>();
++
+ 	public static String fromGamil = "praveen@aurodisplay.com";
+-	public static String toGmail = "Raja@tuckpod.com";
++	public static String toGmail = "praveen@aurodisplay.com";			//Raja@tuckpod.com
+ 	public static String razorpayKeyId = "rzp_live_sjKUSO8AovpnnS"; // live key_id rzp_live_sjKUSO8AovpnnS test_key_id
+ 																	// rzp_test_kF1NdHUm47R7R4
+ 	public static String razorpaySecretKey = "KgmWtCSt9TOG4KTxNGkSoD5C"; // live secret_key KgmWtCSt9TOG4KTxNGkSoD5C
+ 																			// test_secret_key qy48Nhzq72txUptAWkQrMEqy
++	
++	
++	//   owex gprn gkul igxa for praveenkumarfc89@gmail.com app password for the app tuckit-mails
+ 
+ 	// live key_id rzp_live_sjKUSO8AovpnnS test_key_id rzp_test_kF1NdHUm47R7R4
+ 	// live secret_key KgmWtCSt9TOG4KTxNGkSoD5C test_secret_key
+@@ -40,7 +44,7 @@ public class GlobalVariable {
+ 	public static HashMap<String, String> statewise_terminalMap = new HashMap<>();
+ 
+ 	public static double calulcateGstMethod(int amount, String gstType, String terminalId) {
+-		
++
+ //		System.out.println(terminalId);
+ 
+ 		if (stateWise_gstMap.isEmpty()) {
+@@ -116,7 +120,7 @@ public class GlobalVariable {
+ 					statewise_terminalMap.put(siteRegister.getTerminalid(), siteRegister.getState());
+ 
+ 				}
+-				
++
+ 			}
+ 
+ 		} catch (Exception e) {
+diff --git a/src/main/java/com/locks/otpHandle/ConfirmOtp.java b/src/main/java/com/locks/otpHandle/ConfirmOtp.java
+index 2850bba..2e31c7d 100644
+--- a/src/main/java/com/locks/otpHandle/ConfirmOtp.java
++++ b/src/main/java/com/locks/otpHandle/ConfirmOtp.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONArray;
+ import org.json.JSONObject;
+diff --git a/src/main/java/com/locks/otpHandle/OtpHandler.java b/src/main/java/com/locks/otpHandle/OtpHandler.java
+index d770bf4..fd8723a 100644
+--- a/src/main/java/com/locks/otpHandle/OtpHandler.java
++++ b/src/main/java/com/locks/otpHandle/OtpHandler.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONObject;
+ 
+diff --git a/src/main/java/com/locks/payment/status/PaymentStatusBefor.java b/src/main/java/com/locks/payment/status/PaymentStatusBefor.java
+index 6edf425..51bf818 100644
+--- a/src/main/java/com/locks/payment/status/PaymentStatusBefor.java
++++ b/src/main/java/com/locks/payment/status/PaymentStatusBefor.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONObject;
+ 
+diff --git a/src/main/java/com/locks/payment/status/PaymentStatusHandler.java b/src/main/java/com/locks/payment/status/PaymentStatusHandler.java
+index 904755a..8c32520 100644
+--- a/src/main/java/com/locks/payment/status/PaymentStatusHandler.java
++++ b/src/main/java/com/locks/payment/status/PaymentStatusHandler.java
+@@ -6,11 +6,17 @@ import java.io.InputStreamReader;
+ import java.io.PrintWriter;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.json.JSONObject;
+ 
+diff --git a/src/main/java/com/locks/payment/status/TransactionRefundHandler.java b/src/main/java/com/locks/payment/status/TransactionRefundHandler.java
+index b8bf0dd..8bdcbd7 100644
+--- a/src/main/java/com/locks/payment/status/TransactionRefundHandler.java
++++ b/src/main/java/com/locks/payment/status/TransactionRefundHandler.java
+@@ -15,11 +15,17 @@ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONArray;
+diff --git a/src/main/java/com/locks/update/CheckConnection.java b/src/main/java/com/locks/update/CheckConnection.java
+index 5737c3b..be15c7d 100644
+--- a/src/main/java/com/locks/update/CheckConnection.java
++++ b/src/main/java/com/locks/update/CheckConnection.java
+@@ -1,11 +1,17 @@
+ package com.locks.update;
+ 
+ import java.io.IOException;
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ /**
+  * Servlet implementation class CheckConnection
+diff --git a/src/main/java/com/locks/update/TestingServltt.java b/src/main/java/com/locks/update/TestingServltt.java
+index 7188d57..ec43dc0 100644
+--- a/src/main/java/com/locks/update/TestingServltt.java
++++ b/src/main/java/com/locks/update/TestingServltt.java
+@@ -5,11 +5,17 @@ import java.io.IOException;
+ import java.io.InputStreamReader;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ import org.json.JSONObject;
+ 
+ /**
+diff --git a/src/main/java/com/locks/update/UpdateMobileNumber.java b/src/main/java/com/locks/update/UpdateMobileNumber.java
+index a825a2e..bb22784 100644
+--- a/src/main/java/com/locks/update/UpdateMobileNumber.java
++++ b/src/main/java/com/locks/update/UpdateMobileNumber.java
+@@ -13,11 +13,17 @@ import java.sql.Statement;
+ import java.util.HashMap;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Session;
+ import org.json.JSONObject;
+diff --git a/src/main/java/com/locks/update/UpdateUserPassword.java b/src/main/java/com/locks/update/UpdateUserPassword.java
+index d36a8fe..3e958b1 100644
+--- a/src/main/java/com/locks/update/UpdateUserPassword.java
++++ b/src/main/java/com/locks/update/UpdateUserPassword.java
+@@ -8,11 +8,17 @@ import java.util.List;
+ import java.util.stream.Collector;
+ import java.util.stream.Collectors;
+ 
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
++import javax.servlet.ServletException;
++import javax.servlet.annotation.WebServlet;
++import javax.servlet.http.HttpServlet;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++
++//import jakarta.servlet.ServletException;
++//import jakarta.servlet.annotation.WebServlet;
++//import jakarta.servlet.http.HttpServlet;
++//import jakarta.servlet.http.HttpServletRequest;
++//import jakarta.servlet.http.HttpServletResponse;
+ 
+ import org.hibernate.Query;
+ import org.hibernate.Session;
+diff --git a/src/main/java/hibernate.cfg.xml b/src/main/java/hibernate.cfg.xml
+index 48e5149..e565252 100644
+--- a/src/main/java/hibernate.cfg.xml
++++ b/src/main/java/hibernate.cfg.xml
+@@ -23,16 +23,13 @@
+ 			<property name="hibernate.connection.password">root</property> -->
+ 
+ 
+-		<property name="hibernate.connection.username">praveen</property>
+-		<property name="hibernate.connection.url">jdbc:mysql://192.168.0.186:3306/auroautolocker</property>
++		<property name="hibernate.connection.username">root</property>
++		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property>
+ 		<property name="hibernate.connection.password">root</property>
+ 
+-	<!-- for production app.tuckit.in 
+-	<property name="hibernate.connection.username">root</property> 
+-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
+-		<property name="hibernate.connection.password">aurotecGM@21</property> -->
+-
+-
++		<!-- for production app.tuckit.in <property name="hibernate.connection.username">root</property> 
++			<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
++			<property name="hibernate.connection.password">aurotecGM@21</property> -->
+ 
+ 		<!-- Database for Locker Templ admin here here -->
+ 
+diff --git a/src/main/webapp/WEB-INF/web.xml b/src/main/webapp/WEB-INF/web.xml
+index 882cd69..fcb0e71 100644
+--- a/src/main/webapp/WEB-INF/web.xml
++++ b/src/main/webapp/WEB-INF/web.xml
+@@ -5,6 +5,7 @@
+ 
+ <web-app>
+ 
++
+ 	<welcome-file-list>
+ 		<welcome-file>index.jsp</welcome-file>
+ 	</welcome-file-list>
+diff --git a/target/AuroAutoLocker.war b/target/AuroAutoLocker.war
+deleted file mode 100644
+index 04f955b..0000000
+Binary files a/target/AuroAutoLocker.war and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/CustomerDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/CustomerDetails.class
+deleted file mode 100644
+index 5c4e7f6..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/CustomerDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LockCategory.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LockCategory.class
+deleted file mode 100644
+index 51b2283..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LockCategory.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LockerOccupacyCountBean.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LockerOccupacyCountBean.class
+deleted file mode 100644
+index 31df1a0..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LockerOccupacyCountBean.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LogDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LogDetails.class
+deleted file mode 100644
+index 1a70459..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/LogDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/ManualOverride.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/ManualOverride.class
+deleted file mode 100644
+index abe8e87..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/ManualOverride.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/PartialRetrieveData.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/PartialRetrieveData.class
+deleted file mode 100644
+index 26c1ee2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/PartialRetrieveData.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/RazorpayAmountRefund.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/RazorpayAmountRefund.class
+deleted file mode 100644
+index f9e15f2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/RazorpayAmountRefund.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/ReleaseLocker.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/ReleaseLocker.class
+deleted file mode 100644
+index 6a511f4..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/ReleaseLocker.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/SiteRegistration.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/SiteRegistration.class
+deleted file mode 100644
+index 15c39e2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/SiteRegistration.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalHealthPacket.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalHealthPacket.class
+deleted file mode 100644
+index 5510442..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalHealthPacket.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalLockMapping.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalLockMapping.class
+deleted file mode 100644
+index ca09afe..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalLockMapping.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalLockStatusDetail.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalLockStatusDetail.class
+deleted file mode 100644
+index f38a3ab..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TerminalLockStatusDetail.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TermwiseLockermalfunction.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TermwiseLockermalfunction.class
+deleted file mode 100644
+index 8c7860a..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TermwiseLockermalfunction.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionDetails.class
+deleted file mode 100644
+index e9bc464..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionFailedDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionFailedDetails.class
+deleted file mode 100644
+index ab2bde6..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionFailedDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionHistory.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionHistory.class
+deleted file mode 100644
+index 2137408..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/TransactionHistory.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/UpdateToDevice.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/UpdateToDevice.class
+deleted file mode 100644
+index 45d8786..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/UpdateToDevice.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/User.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/User.class
+deleted file mode 100644
+index 3a49ada..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/User.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/UserLogs.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/UserLogs.class
+deleted file mode 100644
+index f1bc096..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/UserLogs.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/amountreceiveddetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/amountreceiveddetails.class
+deleted file mode 100644
+index 63f8fc2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/amountreceiveddetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/blockedCustomers.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/blockedCustomers.class
+deleted file mode 100644
+index 8591732..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/blockedCustomers.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/gstDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/gstDetails.class
+deleted file mode 100644
+index 57efadf..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/gstDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/invoiceDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/invoiceDetails.class
+deleted file mode 100644
+index 7b41608..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/invoiceDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/paygatorderid_details.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/paygatorderid_details.class
+deleted file mode 100644
+index 214ae36..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/beans/paygatorderid_details.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/LockerLocksDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/LockerLocksDetails.class
+deleted file mode 100644
+index 4c6f26a..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/LockerLocksDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveFirmwareUpdate.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveFirmwareUpdate.class
+deleted file mode 100644
+index 4baa930..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveFirmwareUpdate.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveLockerCategory.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveLockerCategory.class
+deleted file mode 100644
+index ab8fd11..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveLockerCategory.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveReleaseLocker.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveReleaseLocker.class
+deleted file mode 100644
+index 5e6ac7e..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveReleaseLocker.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveSiteRegistration.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveSiteRegistration.class
+deleted file mode 100644
+index e2e4ff0..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveSiteRegistration.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveUserCreation.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveUserCreation.class
+deleted file mode 100644
+index 7bd0063..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/SaveUserCreation.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/TerminalIdDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/TerminalIdDetails.class
+deleted file mode 100644
+index 16412a1..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/controller/TerminalIdDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/hibernateUtilities/HibernateUtils.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/hibernateUtilities/HibernateUtils.class
+deleted file mode 100644
+index 28f123e..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/hibernateUtilities/HibernateUtils.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.class
+deleted file mode 100644
+index 46ea9f2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auro/otpHandler/SmsSender.class b/target/AuroAutoLocker/WEB-INF/classes/com/auro/otpHandler/SmsSender.class
+deleted file mode 100644
+index 47d9331..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auro/otpHandler/SmsSender.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.class
+deleted file mode 100644
+index 8b98957..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchDeviceHealth.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchDeviceHealth.class
+deleted file mode 100644
+index 4fe080b..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchDeviceHealth.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchFailedTransaction.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchFailedTransaction.class
+deleted file mode 100644
+index c52883e..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchFailedTransaction.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockerStatus.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockerStatus.class
+deleted file mode 100644
+index c737886..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockerStatus.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart$1.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart$1.class
+deleted file mode 100644
+index 142f44a..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart$1.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart$2.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart$2.class
+deleted file mode 100644
+index b565164..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart$2.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart.class
+deleted file mode 100644
+index 8150aa5..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLockersForChart.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLocksDetail.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLocksDetail.class
+deleted file mode 100644
+index 85a4756..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLocksDetail.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLossedCustomers.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLossedCustomers.class
+deleted file mode 100644
+index e59361b..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchLossedCustomers.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchMalfunctioningLocks.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchMalfunctioningLocks.class
+deleted file mode 100644
+index 2254ca4..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchMalfunctioningLocks.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPartialRetrieve.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPartialRetrieve.class
+deleted file mode 100644
+index 9001270..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPartialRetrieve.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPayOrderIdDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPayOrderIdDetails.class
+deleted file mode 100644
+index 98700dc..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPayOrderIdDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPdfDownloadingFile.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPdfDownloadingFile.class
+deleted file mode 100644
+index 2626354..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchPdfDownloadingFile.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchRefundHistory.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchRefundHistory.class
+deleted file mode 100644
+index f8728c2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchRefundHistory.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchStates.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchStates.class
+deleted file mode 100644
+index c80967a..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchStates.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchToXlSheet.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchToXlSheet.class
+deleted file mode 100644
+index 9650c82..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchToXlSheet.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchTransactionDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchTransactionDetails.class
+deleted file mode 100644
+index f16ddd5..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchTransactionDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchTransactionHistory.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchTransactionHistory.class
+deleted file mode 100644
+index 089f8f2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchTransactionHistory.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchUserLoginDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchUserLoginDetails.class
+deleted file mode 100644
+index fcea3ab..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auroLocker/fetch/data/FetchUserLoginDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auto/user/logdetails/HandleUserLogsDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auto/user/logdetails/HandleUserLogsDetails.class
+deleted file mode 100644
+index 583f52b..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auto/user/logdetails/HandleUserLogsDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/auto/user/logdetails/UserLogDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/auto/user/logdetails/UserLogDetails.class
+deleted file mode 100644
+index c97af30..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/auto/user/logdetails/UserLogDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchActiveTransactionMallAuth.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchActiveTransactionMallAuth.class
+deleted file mode 100644
+index df8c4b9..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchActiveTransactionMallAuth.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchBlockedCustomers.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchBlockedCustomers.class
+deleted file mode 100644
+index 0644854..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchBlockedCustomers.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchHistoryForMallAuth.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchHistoryForMallAuth.class
+deleted file mode 100644
+index 3ab4db0..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchHistoryForMallAuth.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchHistoryForMallAuthFromInvoice.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchHistoryForMallAuthFromInvoice.class
+deleted file mode 100644
+index 140e7cf..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchHistoryForMallAuthFromInvoice.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchLockerDetailsForGmail$1.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchLockerDetailsForGmail$1.class
+deleted file mode 100644
+index 3604800..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchLockerDetailsForGmail$1.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchLockerDetailsForGmail.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchLockerDetailsForGmail.class
+deleted file mode 100644
+index 527c214..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchLockerDetailsForGmail.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchPartialRetrieveDetails.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchPartialRetrieveDetails.class
+deleted file mode 100644
+index ee1d65c..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchPartialRetrieveDetails.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchToXlFromIvnoice.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchToXlFromIvnoice.class
+deleted file mode 100644
+index 93b180f..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/FetchToXlFromIvnoice.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/LockerOperationViaSms.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/LockerOperationViaSms.class
+deleted file mode 100644
+index 0db65c2..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/LockerOperationViaSms.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/MallAuthorityOperations.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/MallAuthorityOperations.class
+deleted file mode 100644
+index 0179c1a..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/MallAuthorityOperations.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/SiteRegOperations.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/SiteRegOperations.class
+deleted file mode 100644
+index 4e3c5e1..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/SiteRegOperations.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/UserOperationHandler.class b/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/UserOperationHandler.class
+deleted file mode 100644
+index 9949efc..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locker/operations/UserOperationHandler.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/OpenLockHandler.class b/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/OpenLockHandler.class
+deleted file mode 100644
+index e8979ed..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/OpenLockHandler.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/PasscodeHandler.class b/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/PasscodeHandler.class
+deleted file mode 100644
+index fda8cd4..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/PasscodeHandler.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/PaymentConfirm.class b/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/PaymentConfirm.class
+deleted file mode 100644
+index 7af4539..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/PaymentConfirm.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/RetrivePaymentHandler.class b/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/RetrivePaymentHandler.class
+deleted file mode 100644
+index 888d738..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/lockretrice/passcodeHandler/RetrivePaymentHandler.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/gloablVariable/GlobalVariable.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/gloablVariable/GlobalVariable.class
+deleted file mode 100644
+index c7505f5..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/gloablVariable/GlobalVariable.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/otpHandle/ConfirmOtp.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/otpHandle/ConfirmOtp.class
+deleted file mode 100644
+index b97ba9c..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/otpHandle/ConfirmOtp.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/otpHandle/OtpHandler.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/otpHandle/OtpHandler.class
+deleted file mode 100644
+index 5a8c2c4..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/otpHandle/OtpHandler.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/PaymentStatusBefor.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/PaymentStatusBefor.class
+deleted file mode 100644
+index 83b54d8..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/PaymentStatusBefor.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/PaymentStatusHandler.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/PaymentStatusHandler.class
+deleted file mode 100644
+index b54ed7c..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/PaymentStatusHandler.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/TransactionRefundHandler.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/TransactionRefundHandler.class
+deleted file mode 100644
+index bc9f630..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/payment/status/TransactionRefundHandler.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/CheckConnection.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/CheckConnection.class
+deleted file mode 100644
+index a16fdce..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/CheckConnection.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/TestingServltt.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/TestingServltt.class
+deleted file mode 100644
+index 6a1b130..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/TestingServltt.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/UpdateMobileNumber.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/UpdateMobileNumber.class
+deleted file mode 100644
+index b6b371e..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/UpdateMobileNumber.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/UpdateUserPassword.class b/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/UpdateUserPassword.class
+deleted file mode 100644
+index 6cb0b73..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/classes/com/locks/update/UpdateUserPassword.class and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/classes/log4j2.properties b/target/AuroAutoLocker/WEB-INF/classes/log4j2.properties
+deleted file mode 100644
+index cac03f7..0000000
+--- a/target/AuroAutoLocker/WEB-INF/classes/log4j2.properties
++++ /dev/null
+@@ -1,19 +0,0 @@
+-# Root logger options
+-rootLogger.level = debug
+-rootLogger.appenderRefs = file
+-rootLogger.appenderRef.console.ref = Console
+-rootLogger.appenderRef.file.ref = File
+-
+-# Console appender configuration
+-# appender.console.type = Console
+-# appender.console.name = Console
+-# appender.console.layout.type = PatternLayout
+-# appender.console.layout.pattern = [%d{yyyy-MM-dd HH:mm:ss}] [%-5p] %c{1}:%L - %m%n
+-
+-# File appender configuration
+-appender.file.type = File
+-appender.file.name = File
+-appender.file.fileName = logs/loggerfile.log
+-appender.file.layout.type = PatternLayout
+-appender.file.layout.pattern = [%d{yyyy-MM-dd HH:mm:ss}] [%-5p] %c{1}:%L - %m%n
+- 
+\ No newline at end of file
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/FastInfoset-1.2.15.jar b/target/AuroAutoLocker/WEB-INF/lib/FastInfoset-1.2.15.jar
+deleted file mode 100644
+index 2671209..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/FastInfoset-1.2.15.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/activation-1.1.jar b/target/AuroAutoLocker/WEB-INF/lib/activation-1.1.jar
+deleted file mode 100644
+index 53f82a1..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/activation-1.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/antlr-2.7.7.jar b/target/AuroAutoLocker/WEB-INF/lib/antlr-2.7.7.jar
+deleted file mode 100644
+index 5e5f14b..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/antlr-2.7.7.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/byte-buddy-1.12.9.jar b/target/AuroAutoLocker/WEB-INF/lib/byte-buddy-1.12.9.jar
+deleted file mode 100644
+index 02635b8..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/byte-buddy-1.12.9.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/classmate-1.5.1.jar b/target/AuroAutoLocker/WEB-INF/lib/classmate-1.5.1.jar
+deleted file mode 100644
+index 819f5ea..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/classmate-1.5.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/commons-codec-1.11.jar b/target/AuroAutoLocker/WEB-INF/lib/commons-codec-1.11.jar
+deleted file mode 100644
+index 2245120..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/commons-codec-1.11.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/commons-lang3-3.7.jar b/target/AuroAutoLocker/WEB-INF/lib/commons-lang3-3.7.jar
+deleted file mode 100644
+index f37ded6..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/commons-lang3-3.7.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/commons-text-1.3.jar b/target/AuroAutoLocker/WEB-INF/lib/commons-text-1.3.jar
+deleted file mode 100644
+index 0ec9e48..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/commons-text-1.3.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/gson-2.10.1.jar b/target/AuroAutoLocker/WEB-INF/lib/gson-2.10.1.jar
+deleted file mode 100644
+index a88c5bd..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/gson-2.10.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/hibernate-commons-annotations-5.1.2.Final.jar b/target/AuroAutoLocker/WEB-INF/lib/hibernate-commons-annotations-5.1.2.Final.jar
+deleted file mode 100644
+index 0b2e88f..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/hibernate-commons-annotations-5.1.2.Final.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/hibernate-core-5.6.10.Final.jar b/target/AuroAutoLocker/WEB-INF/lib/hibernate-core-5.6.10.Final.jar
+deleted file mode 100644
+index d6b3d39..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/hibernate-core-5.6.10.Final.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/istack-commons-runtime-3.0.7.jar b/target/AuroAutoLocker/WEB-INF/lib/istack-commons-runtime-3.0.7.jar
+deleted file mode 100644
+index 2fe5b82..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/istack-commons-runtime-3.0.7.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jackson-annotations-2.16.1.jar b/target/AuroAutoLocker/WEB-INF/lib/jackson-annotations-2.16.1.jar
+deleted file mode 100644
+index b9c48e6..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jackson-annotations-2.16.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jackson-core-2.16.1.jar b/target/AuroAutoLocker/WEB-INF/lib/jackson-core-2.16.1.jar
+deleted file mode 100644
+index a8ff5e3..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jackson-core-2.16.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jackson-databind-2.16.1.jar b/target/AuroAutoLocker/WEB-INF/lib/jackson-databind-2.16.1.jar
+deleted file mode 100644
+index 5171b7a..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jackson-databind-2.16.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jandex-2.4.2.Final.jar b/target/AuroAutoLocker/WEB-INF/lib/jandex-2.4.2.Final.jar
+deleted file mode 100644
+index 8e17960..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jandex-2.4.2.Final.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/javax.activation-api-1.2.0.jar b/target/AuroAutoLocker/WEB-INF/lib/javax.activation-api-1.2.0.jar
+deleted file mode 100644
+index 986c365..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/javax.activation-api-1.2.0.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/javax.mail-1.5.5.jar b/target/AuroAutoLocker/WEB-INF/lib/javax.mail-1.5.5.jar
+deleted file mode 100644
+index 17fe059..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/javax.mail-1.5.5.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/javax.persistence-api-2.2.jar b/target/AuroAutoLocker/WEB-INF/lib/javax.persistence-api-2.2.jar
+deleted file mode 100644
+index 164ef3a..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/javax.persistence-api-2.2.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/javax.servlet-api-4.0.1.jar b/target/AuroAutoLocker/WEB-INF/lib/javax.servlet-api-4.0.1.jar
+deleted file mode 100644
+index 844ec7f..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/javax.servlet-api-4.0.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jaxb-api-2.3.1.jar b/target/AuroAutoLocker/WEB-INF/lib/jaxb-api-2.3.1.jar
+deleted file mode 100644
+index 4565865..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jaxb-api-2.3.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jaxb-runtime-2.3.1.jar b/target/AuroAutoLocker/WEB-INF/lib/jaxb-runtime-2.3.1.jar
+deleted file mode 100644
+index 0b9ef67..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jaxb-runtime-2.3.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jboss-logging-3.4.3.Final.jar b/target/AuroAutoLocker/WEB-INF/lib/jboss-logging-3.4.3.Final.jar
+deleted file mode 100644
+index 31d55c6..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jboss-logging-3.4.3.Final.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar b/target/AuroAutoLocker/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar
+deleted file mode 100644
+index 627f7ce..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/json-20160810.jar b/target/AuroAutoLocker/WEB-INF/lib/json-20160810.jar
+deleted file mode 100644
+index a90e448..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/json-20160810.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/log4j-1.2.17.jar b/target/AuroAutoLocker/WEB-INF/lib/log4j-1.2.17.jar
+deleted file mode 100644
+index 1d425cf..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/log4j-1.2.17.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/logging-interceptor-3.10.0.jar b/target/AuroAutoLocker/WEB-INF/lib/logging-interceptor-3.10.0.jar
+deleted file mode 100644
+index 37af3ac..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/logging-interceptor-3.10.0.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/mysql-connector-java-8.0.25.jar b/target/AuroAutoLocker/WEB-INF/lib/mysql-connector-java-8.0.25.jar
+deleted file mode 100644
+index 3db626b..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/mysql-connector-java-8.0.25.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/okhttp-3.10.0.jar b/target/AuroAutoLocker/WEB-INF/lib/okhttp-3.10.0.jar
+deleted file mode 100644
+index 1c3cfb8..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/okhttp-3.10.0.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/okio-1.14.0.jar b/target/AuroAutoLocker/WEB-INF/lib/okio-1.14.0.jar
+deleted file mode 100644
+index a0ee347..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/okio-1.14.0.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/protobuf-java-3.11.4.jar b/target/AuroAutoLocker/WEB-INF/lib/protobuf-java-3.11.4.jar
+deleted file mode 100644
+index 7224d23..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/protobuf-java-3.11.4.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/razorpay-java-1.4.3.jar b/target/AuroAutoLocker/WEB-INF/lib/razorpay-java-1.4.3.jar
+deleted file mode 100644
+index 13a03ae..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/razorpay-java-1.4.3.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/stax-ex-1.8.jar b/target/AuroAutoLocker/WEB-INF/lib/stax-ex-1.8.jar
+deleted file mode 100644
+index 5e60637..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/stax-ex-1.8.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/lib/txw2-2.3.1.jar b/target/AuroAutoLocker/WEB-INF/lib/txw2-2.3.1.jar
+deleted file mode 100644
+index 75ed519..0000000
+Binary files a/target/AuroAutoLocker/WEB-INF/lib/txw2-2.3.1.jar and /dev/null differ
+diff --git a/target/AuroAutoLocker/WEB-INF/web.xml b/target/AuroAutoLocker/WEB-INF/web.xml
+deleted file mode 100644
+index 882cd69..0000000
+--- a/target/AuroAutoLocker/WEB-INF/web.xml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-
+-<!DOCTYPE web-app PUBLIC
+- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+-
+-<web-app>
+-
+-	<welcome-file-list>
+-		<welcome-file>index.jsp</welcome-file>
+-	</welcome-file-list>
+-	
+-</web-app>
+\ No newline at end of file
+diff --git a/target/AuroAutoLocker/font.jsp b/target/AuroAutoLocker/font.jsp
+deleted file mode 100644
+index d5f4daa..0000000
+--- a/target/AuroAutoLocker/font.jsp
++++ /dev/null
+@@ -1,12 +0,0 @@
+-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+-    pageEncoding="ISO-8859-1"%>
+-<!DOCTYPE html>
+-<html>
+-<head>
+-<meta charset="ISO-8859-1">
+-<title>Insert title here</title>
+-</head>
+-<body>
+-
+-</body>
+-</html>
+\ No newline at end of file
+diff --git a/target/AuroAutoLocker/index.jsp b/target/AuroAutoLocker/index.jsp
+deleted file mode 100644
+index 129cda2..0000000
+--- a/target/AuroAutoLocker/index.jsp
++++ /dev/null
+@@ -1,38 +0,0 @@
+-
+-
+-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+-<!DOCTYPE html>
+-<html>
+-<head>
+-<meta charset="ISO-8859-1">
+-<title>Insert title here</title>
+-<style type="text/css">
+-#ss{
+-
+-background-color: powderblue;
+-color: white;
+-  padding: 12px 30px;
+-  cursor: pointer;
+-  font-size: 20px;
+-
+-}
+-.btn {
+-  background-color: DodgerBlue;
+-  border: none;
+-  color: white;
+-  padding: 12px 30px;
+-  cursor: pointer;
+-  font-size: 20px;
+-}
+-
+-</style>
+-
+-</head>
+-
+-
+-<body>
+-
+-	Auro Mall Lockers 3.0.1AM
+- 
+-</body>
+-</html>
+diff --git a/target/classes/com/auro/beans/amountreceiveddetails.class b/target/classes/com/auro/beans/amountreceiveddetails.class
+index 047cd18..a3f0f4b 100644
+Binary files a/target/classes/com/auro/beans/amountreceiveddetails.class and b/target/classes/com/auro/beans/amountreceiveddetails.class differ
+diff --git a/target/classes/com/auro/controller/LockerLocksDetails.class b/target/classes/com/auro/controller/LockerLocksDetails.class
+index e630326..0ef3021 100644
+Binary files a/target/classes/com/auro/controller/LockerLocksDetails.class and b/target/classes/com/auro/controller/LockerLocksDetails.class differ
+diff --git a/target/classes/com/auro/controller/SaveFirmwareUpdate.class b/target/classes/com/auro/controller/SaveFirmwareUpdate.class
+index b3d9924..f9b7f5c 100644
+Binary files a/target/classes/com/auro/controller/SaveFirmwareUpdate.class and b/target/classes/com/auro/controller/SaveFirmwareUpdate.class differ
+diff --git a/target/classes/com/auro/controller/SaveLockerCategory.class b/target/classes/com/auro/controller/SaveLockerCategory.class
+index 89d323d..b81c091 100644
+Binary files a/target/classes/com/auro/controller/SaveLockerCategory.class and b/target/classes/com/auro/controller/SaveLockerCategory.class differ
+diff --git a/target/classes/com/auro/controller/SaveReleaseLocker.class b/target/classes/com/auro/controller/SaveReleaseLocker.class
+index f2868c0..edad604 100644
+Binary files a/target/classes/com/auro/controller/SaveReleaseLocker.class and b/target/classes/com/auro/controller/SaveReleaseLocker.class differ
+diff --git a/target/classes/com/auro/controller/SaveSiteRegistration.class b/target/classes/com/auro/controller/SaveSiteRegistration.class
+index b6f69c1..80eb8f0 100644
+Binary files a/target/classes/com/auro/controller/SaveSiteRegistration.class and b/target/classes/com/auro/controller/SaveSiteRegistration.class differ
+diff --git a/target/classes/com/auro/controller/SaveUserCreation.class b/target/classes/com/auro/controller/SaveUserCreation.class
+index d9e0626..ca9d174 100644
+Binary files a/target/classes/com/auro/controller/SaveUserCreation.class and b/target/classes/com/auro/controller/SaveUserCreation.class differ
+diff --git a/target/classes/com/auro/controller/TerminalIdDetails.class b/target/classes/com/auro/controller/TerminalIdDetails.class
+index 20f6822..7d499de 100644
+Binary files a/target/classes/com/auro/controller/TerminalIdDetails.class and b/target/classes/com/auro/controller/TerminalIdDetails.class differ
+diff --git a/target/classes/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.class b/target/classes/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.class
+index 03abf46..be9f568 100644
+Binary files a/target/classes/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.class and b/target/classes/com/auro/locker/delete/row/DeleteAndUpdateLockerLockDetails.class differ
+diff --git a/target/classes/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.class b/target/classes/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.class
+index 56aa636..4265dfc 100644
+Binary files a/target/classes/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.class and b/target/classes/com/auroClient/VerifyLockOpen/VerifyLockOpenStatus.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchDeviceHealth.class b/target/classes/com/auroLocker/fetch/data/FetchDeviceHealth.class
+index 7c9dc44..1562aa1 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchDeviceHealth.class and b/target/classes/com/auroLocker/fetch/data/FetchDeviceHealth.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchFailedTransaction.class b/target/classes/com/auroLocker/fetch/data/FetchFailedTransaction.class
+index 8e40cef..a11e25d 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchFailedTransaction.class and b/target/classes/com/auroLocker/fetch/data/FetchFailedTransaction.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchLockerStatus.class b/target/classes/com/auroLocker/fetch/data/FetchLockerStatus.class
+index b4d8316..49ec34b 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchLockerStatus.class and b/target/classes/com/auroLocker/fetch/data/FetchLockerStatus.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$1.class b/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$1.class
+index e74a974..f76a855 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$1.class and b/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$1.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$2.class b/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$2.class
+index 5724ac1..3ec9324 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$2.class and b/target/classes/com/auroLocker/fetch/data/FetchLockersForChart$2.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchLockersForChart.class b/target/classes/com/auroLocker/fetch/data/FetchLockersForChart.class
+index 6c06de8..2a951ab 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchLockersForChart.class and b/target/classes/com/auroLocker/fetch/data/FetchLockersForChart.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchLocksDetail.class b/target/classes/com/auroLocker/fetch/data/FetchLocksDetail.class
+index c8e3ddf..bcdeccb 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchLocksDetail.class and b/target/classes/com/auroLocker/fetch/data/FetchLocksDetail.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchLossedCustomers.class b/target/classes/com/auroLocker/fetch/data/FetchLossedCustomers.class
+index 6f96e15..dca99cc 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchLossedCustomers.class and b/target/classes/com/auroLocker/fetch/data/FetchLossedCustomers.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchMalfunctioningLocks.class b/target/classes/com/auroLocker/fetch/data/FetchMalfunctioningLocks.class
+index 2559d21..051519d 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchMalfunctioningLocks.class and b/target/classes/com/auroLocker/fetch/data/FetchMalfunctioningLocks.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchPartialRetrieve.class b/target/classes/com/auroLocker/fetch/data/FetchPartialRetrieve.class
+index 27fd4c2..d551910 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchPartialRetrieve.class and b/target/classes/com/auroLocker/fetch/data/FetchPartialRetrieve.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchPayOrderIdDetails.class b/target/classes/com/auroLocker/fetch/data/FetchPayOrderIdDetails.class
+index eac9606..703a2b3 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchPayOrderIdDetails.class and b/target/classes/com/auroLocker/fetch/data/FetchPayOrderIdDetails.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchPdfDownloadingFile.class b/target/classes/com/auroLocker/fetch/data/FetchPdfDownloadingFile.class
+index 34a8787..9d3b7bc 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchPdfDownloadingFile.class and b/target/classes/com/auroLocker/fetch/data/FetchPdfDownloadingFile.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchRefundHistory.class b/target/classes/com/auroLocker/fetch/data/FetchRefundHistory.class
+index d22fb2e..e28d404 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchRefundHistory.class and b/target/classes/com/auroLocker/fetch/data/FetchRefundHistory.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchStates.class b/target/classes/com/auroLocker/fetch/data/FetchStates.class
+index 65cbb1d..2d04061 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchStates.class and b/target/classes/com/auroLocker/fetch/data/FetchStates.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchToXlSheet.class b/target/classes/com/auroLocker/fetch/data/FetchToXlSheet.class
+index 86b79d2..e966f92 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchToXlSheet.class and b/target/classes/com/auroLocker/fetch/data/FetchToXlSheet.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchTransactionDetails.class b/target/classes/com/auroLocker/fetch/data/FetchTransactionDetails.class
+index f385f5a..96960ce 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchTransactionDetails.class and b/target/classes/com/auroLocker/fetch/data/FetchTransactionDetails.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchTransactionHistory.class b/target/classes/com/auroLocker/fetch/data/FetchTransactionHistory.class
+index 2546ea0..c3aa031 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchTransactionHistory.class and b/target/classes/com/auroLocker/fetch/data/FetchTransactionHistory.class differ
+diff --git a/target/classes/com/auroLocker/fetch/data/FetchUserLoginDetails.class b/target/classes/com/auroLocker/fetch/data/FetchUserLoginDetails.class
+index 5b04282..4e5c690 100644
+Binary files a/target/classes/com/auroLocker/fetch/data/FetchUserLoginDetails.class and b/target/classes/com/auroLocker/fetch/data/FetchUserLoginDetails.class differ
+diff --git a/target/classes/com/auto/user/logdetails/HandleUserLogsDetails.class b/target/classes/com/auto/user/logdetails/HandleUserLogsDetails.class
+index 8e84653..bd61951 100644
+Binary files a/target/classes/com/auto/user/logdetails/HandleUserLogsDetails.class and b/target/classes/com/auto/user/logdetails/HandleUserLogsDetails.class differ
+diff --git a/target/classes/com/auto/user/logdetails/UserLogDetails.class b/target/classes/com/auto/user/logdetails/UserLogDetails.class
+index bff9478..5056790 100644
+Binary files a/target/classes/com/auto/user/logdetails/UserLogDetails.class and b/target/classes/com/auto/user/logdetails/UserLogDetails.class differ
+diff --git a/target/classes/com/locker/operations/FetchActiveTransactionMallAuth.class b/target/classes/com/locker/operations/FetchActiveTransactionMallAuth.class
+index c75f019..fcb84dc 100644
+Binary files a/target/classes/com/locker/operations/FetchActiveTransactionMallAuth.class and b/target/classes/com/locker/operations/FetchActiveTransactionMallAuth.class differ
+diff --git a/target/classes/com/locker/operations/FetchBlockedCustomers.class b/target/classes/com/locker/operations/FetchBlockedCustomers.class
+index 93540d8..a72071a 100644
+Binary files a/target/classes/com/locker/operations/FetchBlockedCustomers.class and b/target/classes/com/locker/operations/FetchBlockedCustomers.class differ
+diff --git a/target/classes/com/locker/operations/FetchHistoryForMallAuth.class b/target/classes/com/locker/operations/FetchHistoryForMallAuth.class
+index 765b833..d44b20c 100644
+Binary files a/target/classes/com/locker/operations/FetchHistoryForMallAuth.class and b/target/classes/com/locker/operations/FetchHistoryForMallAuth.class differ
+diff --git a/target/classes/com/locker/operations/FetchHistoryForMallAuthFromInvoice.class b/target/classes/com/locker/operations/FetchHistoryForMallAuthFromInvoice.class
+index 1b87b62..97e22de 100644
+Binary files a/target/classes/com/locker/operations/FetchHistoryForMallAuthFromInvoice.class and b/target/classes/com/locker/operations/FetchHistoryForMallAuthFromInvoice.class differ
+diff --git a/target/classes/com/locker/operations/FetchLockerDetailsForGmail$1.class b/target/classes/com/locker/operations/FetchLockerDetailsForGmail$1.class
+index f4a960e..392f69a 100644
+Binary files a/target/classes/com/locker/operations/FetchLockerDetailsForGmail$1.class and b/target/classes/com/locker/operations/FetchLockerDetailsForGmail$1.class differ
+diff --git a/target/classes/com/locker/operations/FetchLockerDetailsForGmail.class b/target/classes/com/locker/operations/FetchLockerDetailsForGmail.class
+index bf44ed2..2ccd19a 100644
+Binary files a/target/classes/com/locker/operations/FetchLockerDetailsForGmail.class and b/target/classes/com/locker/operations/FetchLockerDetailsForGmail.class differ
+diff --git a/target/classes/com/locker/operations/FetchPartialRetrieveDetails.class b/target/classes/com/locker/operations/FetchPartialRetrieveDetails.class
+index 2f75292..172eb69 100644
+Binary files a/target/classes/com/locker/operations/FetchPartialRetrieveDetails.class and b/target/classes/com/locker/operations/FetchPartialRetrieveDetails.class differ
+diff --git a/target/classes/com/locker/operations/FetchToXlFromIvnoice.class b/target/classes/com/locker/operations/FetchToXlFromIvnoice.class
+index daa5a0a..d081273 100644
+Binary files a/target/classes/com/locker/operations/FetchToXlFromIvnoice.class and b/target/classes/com/locker/operations/FetchToXlFromIvnoice.class differ
+diff --git a/target/classes/com/locker/operations/HandleCustomerEvents.class b/target/classes/com/locker/operations/HandleCustomerEvents.class
+index 71c9370..da168f7 100644
+Binary files a/target/classes/com/locker/operations/HandleCustomerEvents.class and b/target/classes/com/locker/operations/HandleCustomerEvents.class differ
+diff --git a/target/classes/com/locker/operations/LockerOperationViaSms.class b/target/classes/com/locker/operations/LockerOperationViaSms.class
+index fbaddbf..6389c18 100644
+Binary files a/target/classes/com/locker/operations/LockerOperationViaSms.class and b/target/classes/com/locker/operations/LockerOperationViaSms.class differ
+diff --git a/target/classes/com/locker/operations/MallAuthorityOperations.class b/target/classes/com/locker/operations/MallAuthorityOperations.class
+index 7e21715..3c7b5ed 100644
+Binary files a/target/classes/com/locker/operations/MallAuthorityOperations.class and b/target/classes/com/locker/operations/MallAuthorityOperations.class differ
+diff --git a/target/classes/com/locker/operations/SiteRegOperations.class b/target/classes/com/locker/operations/SiteRegOperations.class
+index d0a6ff9..ef04c11 100644
+Binary files a/target/classes/com/locker/operations/SiteRegOperations.class and b/target/classes/com/locker/operations/SiteRegOperations.class differ
+diff --git a/target/classes/com/locker/operations/UserOperationHandler.class b/target/classes/com/locker/operations/UserOperationHandler.class
+index 8017999..6ed82d1 100644
+Binary files a/target/classes/com/locker/operations/UserOperationHandler.class and b/target/classes/com/locker/operations/UserOperationHandler.class differ
+diff --git a/target/classes/com/lockretrice/passcodeHandler/OpenLockHandler.class b/target/classes/com/lockretrice/passcodeHandler/OpenLockHandler.class
+index 0f788ba..4df5cb4 100644
+Binary files a/target/classes/com/lockretrice/passcodeHandler/OpenLockHandler.class and b/target/classes/com/lockretrice/passcodeHandler/OpenLockHandler.class differ
+diff --git a/target/classes/com/lockretrice/passcodeHandler/PasscodeHandler.class b/target/classes/com/lockretrice/passcodeHandler/PasscodeHandler.class
+index 232c920..9c97916 100644
+Binary files a/target/classes/com/lockretrice/passcodeHandler/PasscodeHandler.class and b/target/classes/com/lockretrice/passcodeHandler/PasscodeHandler.class differ
+diff --git a/target/classes/com/lockretrice/passcodeHandler/PaymentConfirm.class b/target/classes/com/lockretrice/passcodeHandler/PaymentConfirm.class
+index 2fc6265..ac9c09e 100644
+Binary files a/target/classes/com/lockretrice/passcodeHandler/PaymentConfirm.class and b/target/classes/com/lockretrice/passcodeHandler/PaymentConfirm.class differ
+diff --git a/target/classes/com/lockretrice/passcodeHandler/RetrivePaymentHandler.class b/target/classes/com/lockretrice/passcodeHandler/RetrivePaymentHandler.class
+index 0de8266..07e9541 100644
+Binary files a/target/classes/com/lockretrice/passcodeHandler/RetrivePaymentHandler.class and b/target/classes/com/lockretrice/passcodeHandler/RetrivePaymentHandler.class differ
+diff --git a/target/classes/com/locks/gloablVariable/GlobalVariable.class b/target/classes/com/locks/gloablVariable/GlobalVariable.class
+index 86a4ca2..8bf39f1 100644
+Binary files a/target/classes/com/locks/gloablVariable/GlobalVariable.class and b/target/classes/com/locks/gloablVariable/GlobalVariable.class differ
+diff --git a/target/classes/com/locks/otpHandle/ConfirmOtp.class b/target/classes/com/locks/otpHandle/ConfirmOtp.class
+index 7bbb94c..5e2856d 100644
+Binary files a/target/classes/com/locks/otpHandle/ConfirmOtp.class and b/target/classes/com/locks/otpHandle/ConfirmOtp.class differ
+diff --git a/target/classes/com/locks/otpHandle/OtpHandler.class b/target/classes/com/locks/otpHandle/OtpHandler.class
+index 7ddce7f..85b82a4 100644
+Binary files a/target/classes/com/locks/otpHandle/OtpHandler.class and b/target/classes/com/locks/otpHandle/OtpHandler.class differ
+diff --git a/target/classes/com/locks/payment/status/PaymentStatusBefor.class b/target/classes/com/locks/payment/status/PaymentStatusBefor.class
+index 3816986..97ef28f 100644
+Binary files a/target/classes/com/locks/payment/status/PaymentStatusBefor.class and b/target/classes/com/locks/payment/status/PaymentStatusBefor.class differ
+diff --git a/target/classes/com/locks/payment/status/PaymentStatusHandler.class b/target/classes/com/locks/payment/status/PaymentStatusHandler.class
+index 0be5fa0..3b2b29a 100644
+Binary files a/target/classes/com/locks/payment/status/PaymentStatusHandler.class and b/target/classes/com/locks/payment/status/PaymentStatusHandler.class differ
+diff --git a/target/classes/com/locks/payment/status/TransactionRefundHandler.class b/target/classes/com/locks/payment/status/TransactionRefundHandler.class
+index 9458967..1630006 100644
+Binary files a/target/classes/com/locks/payment/status/TransactionRefundHandler.class and b/target/classes/com/locks/payment/status/TransactionRefundHandler.class differ
+diff --git a/target/classes/com/locks/update/CheckConnection.class b/target/classes/com/locks/update/CheckConnection.class
+index 10d2432..72402f5 100644
+Binary files a/target/classes/com/locks/update/CheckConnection.class and b/target/classes/com/locks/update/CheckConnection.class differ
+diff --git a/target/classes/com/locks/update/TestingServltt.class b/target/classes/com/locks/update/TestingServltt.class
+index e96d3a9..3c39bb7 100644
+Binary files a/target/classes/com/locks/update/TestingServltt.class and b/target/classes/com/locks/update/TestingServltt.class differ
+diff --git a/target/classes/com/locks/update/UpdateMobileNumber.class b/target/classes/com/locks/update/UpdateMobileNumber.class
+index 60c37e5..717aa2f 100644
+Binary files a/target/classes/com/locks/update/UpdateMobileNumber.class and b/target/classes/com/locks/update/UpdateMobileNumber.class differ
+diff --git a/target/classes/com/locks/update/UpdateUserPassword.class b/target/classes/com/locks/update/UpdateUserPassword.class
+index aeef5d7..b70de40 100644
+Binary files a/target/classes/com/locks/update/UpdateUserPassword.class and b/target/classes/com/locks/update/UpdateUserPassword.class differ
+diff --git a/target/classes/hibernate.cfg.xml b/target/classes/hibernate.cfg.xml
+index 5dec368..e565252 100644
+--- a/target/classes/hibernate.cfg.xml
++++ b/target/classes/hibernate.cfg.xml
+@@ -27,12 +27,9 @@
+ 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property>
+ 		<property name="hibernate.connection.password">root</property>
+ 
+-	<!-- for production app.tuckit.in 
+-	<property name="hibernate.connection.username">root</property> 
+-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
+-		<property name="hibernate.connection.password">aurotecGM@21</property> -->
+-
+-
++		<!-- for production app.tuckit.in <property name="hibernate.connection.username">root</property> 
++			<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
++			<property name="hibernate.connection.password">aurotecGM@21</property> -->
+ 
+ 		<!-- Database for Locker Templ admin here here -->
+ 
+diff --git a/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.properties b/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.properties
+index fbd81ab..efefc76 100644
+--- a/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.properties
++++ b/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.properties
+@@ -1,7 +1,7 @@
+ #Generated by Maven Integration for Eclipse
+-#Fri Feb 28 17:07:13 IST 2025
++#Mon Apr 28 18:13:34 IST 2025
+ artifactId=AuroAutoLocker
+ groupId=com.auro.mainLocker
+ m2e.projectLocation=C\:\\Users\\aurol\\elipse-workspace-noheaders\\AuroAutoLocker
+ m2e.projectName=AuroAutoLocker
+-version=3.12.13-SNAPSHOT
++version=3.14.16-SNAPSHOT
+diff --git a/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.xml b/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.xml
+index 339f991..953174c 100644
+--- a/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.xml
++++ b/target/m2e-wtp/web-resources/META-INF/maven/com.auro.mainLocker/AuroAutoLocker/pom.xml
+@@ -6,7 +6,7 @@
+ 
+   <groupId>com.auro.mainLocker</groupId>
+   <artifactId>AuroAutoLocker</artifactId>
+-  <version>3.12.13-SNAPSHOT</version>
++  <version>3.14.16-SNAPSHOT</version>
+   <packaging>war</packaging>
+ 
+   <name>AuroAutoLocker Maven Webapp</name>
+@@ -35,24 +35,26 @@
+ 	</dependency>
+ 	
+ 	<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+-<dependency>
++	<!-- 
++		
++		<dependency>
+     <groupId>jakarta.servlet</groupId>
+     <artifactId>jakarta.servlet-api</artifactId>
+     <version>6.0.0</version>
+     <scope>provided</scope>
+ </dependency>
++	-->
+ 
+ 
+ 	<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+ 	
+-	<!-- 
+ 		<dependency>
+ 	    <groupId>javax.servlet</groupId>
+ 	    <artifactId>javax.servlet-api</artifactId>
+ 	    <version>4.0.1</version>
+ 	</dependency>	
+ 		
+-	-->
++	
+ 
+ 	
+ 	     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+diff --git a/target/maven-archiver/pom.properties b/target/maven-archiver/pom.properties
+deleted file mode 100644
+index 9f28e73..0000000
+--- a/target/maven-archiver/pom.properties
++++ /dev/null
+@@ -1,4 +0,0 @@
+-#Created by Apache Maven 3.9.9
+-artifactId=AuroAutoLocker
+-groupId=com.auro.mainLocker
+-version=0.0.1-SNAPSHOT
+diff --git a/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst b/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+deleted file mode 100644
+index dbe4a05..0000000
+--- a/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
++++ /dev/null
+@@ -1,81 +0,0 @@
+-com\auro\controller\SaveFirmwareUpdate.class
+-com\locker\operations\FetchLockerDetailsForGmail.class
+-com\locker\operations\FetchPartialRetrieveDetails.class
+-com\locker\operations\FetchHistoryForMallAuthFromInvoice.class
+-com\locks\otpHandle\OtpHandler.class
+-com\auro\beans\RazorpayAmountRefund.class
+-com\auro\locker\delete\row\DeleteAndUpdateLockerLockDetails.class
+-com\auroLocker\fetch\data\FetchTransactionHistory.class
+-com\auroClient\VerifyLockOpen\VerifyLockOpenStatus.class
+-com\auroLocker\fetch\data\FetchRefundHistory.class
+-com\auto\user\logdetails\HandleUserLogsDetails.class
+-com\auro\beans\TerminalHealthPacket.class
+-com\locker\operations\LockerOperationViaSms.class
+-com\auro\beans\TerminalLockStatusDetail.class
+-com\auroLocker\fetch\data\FetchLockerStatus.class
+-com\auroLocker\fetch\data\FetchLossedCustomers.class
+-com\auro\beans\invoiceDetails.class
+-com\auro\beans\LogDetails.class
+-com\auro\beans\TerminalLockMapping.class
+-com\auroLocker\fetch\data\FetchDeviceHealth.class
+-com\auroLocker\fetch\data\FetchPartialRetrieve.class
+-com\auro\hibernateUtilities\HibernateUtils.class
+-com\auro\beans\ManualOverride.class
+-com\auroLocker\fetch\data\FetchLockersForChart.class
+-com\lockretrice\passcodeHandler\OpenLockHandler.class
+-com\auro\controller\LockerLocksDetails.class
+-com\auto\user\logdetails\UserLogDetails.class
+-com\locks\payment\status\PaymentStatusBefor.class
+-com\locker\operations\FetchHistoryForMallAuth.class
+-com\locker\operations\FetchLockerDetailsForGmail$1.class
+-com\auro\beans\LockerOccupacyCountBean.class
+-com\auro\beans\UpdateToDevice.class
+-com\locks\gloablVariable\GlobalVariable.class
+-com\auro\beans\ReleaseLocker.class
+-com\locker\operations\UserOperationHandler.class
+-com\auro\beans\User.class
+-com\lockretrice\passcodeHandler\PaymentConfirm.class
+-com\auro\otpHandler\SmsSender.class
+-com\auro\controller\TerminalIdDetails.class
+-com\locker\operations\MallAuthorityOperations.class
+-com\auro\beans\LockCategory.class
+-com\auroLocker\fetch\data\FetchLocksDetail.class
+-com\auroLocker\fetch\data\FetchLockersForChart$1.class
+-com\locks\update\CheckConnection.class
+-com\auroLocker\fetch\data\FetchMalfunctioningLocks.class
+-com\auroLocker\fetch\data\FetchUserLoginDetails.class
+-com\locks\payment\status\TransactionRefundHandler.class
+-com\auroLocker\fetch\data\FetchPayOrderIdDetails.class
+-com\auro\beans\paygatorderid_details.class
+-com\auro\beans\TransactionDetails.class
+-com\auro\controller\SaveLockerCategory.class
+-com\auroLocker\fetch\data\FetchFailedTransaction.class
+-com\lockretrice\passcodeHandler\PasscodeHandler.class
+-com\auro\beans\TransactionHistory.class
+-com\auro\beans\CustomerDetails.class
+-com\auro\beans\TermwiseLockermalfunction.class
+-com\locker\operations\FetchBlockedCustomers.class
+-com\auro\beans\TransactionFailedDetails.class
+-com\locks\update\TestingServltt.class
+-com\locks\payment\status\PaymentStatusHandler.class
+-com\locks\otpHandle\ConfirmOtp.class
+-com\auro\beans\PartialRetrieveData.class
+-com\auroLocker\fetch\data\FetchLockersForChart$2.class
+-com\auroLocker\fetch\data\FetchToXlSheet.class
+-com\auro\beans\amountreceiveddetails.class
+-com\locker\operations\FetchToXlFromIvnoice.class
+-com\locks\update\UpdateUserPassword.class
+-com\auro\controller\SaveSiteRegistration.class
+-com\auro\beans\SiteRegistration.class
+-com\auro\beans\blockedCustomers.class
+-com\auroLocker\fetch\data\FetchPdfDownloadingFile.class
+-com\locker\operations\SiteRegOperations.class
+-com\lockretrice\passcodeHandler\RetrivePaymentHandler.class
+-com\auroLocker\fetch\data\FetchTransactionDetails.class
+-com\locker\operations\FetchActiveTransactionMallAuth.class
+-com\auro\controller\SaveUserCreation.class
+-com\auroLocker\fetch\data\FetchStates.class
+-com\auro\beans\gstDetails.class
+-com\auro\controller\SaveReleaseLocker.class
+-com\auro\beans\UserLogs.class
+-com\locks\update\UpdateMobileNumber.class
+diff --git a/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst b/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+deleted file mode 100644
+index 62aa622..0000000
+--- a/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
++++ /dev/null
+@@ -1,78 +0,0 @@
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchTransactionDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\PartialRetrieveData.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\SiteRegOperations.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\gloablVariable\GlobalVariable.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchRefundHistory.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\otpHandle\OtpHandler.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\blockedCustomers.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TerminalLockStatusDetail.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\payment\status\PaymentStatusBefor.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\lockretrice\passcodeHandler\OpenLockHandler.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TerminalHealthPacket.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\LockerLocksDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\SaveUserCreation.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\hibernateUtilities\HibernateUtils.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\lockretrice\passcodeHandler\RetrivePaymentHandler.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchActiveTransactionMallAuth.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\SaveSiteRegistration.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\locker\delete\row\DeleteAndUpdateLockerLockDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auto\user\logdetails\HandleUserLogsDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\invoiceDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLossedCustomers.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\User.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\amountreceiveddetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\otpHandler\SmsSender.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\update\CheckConnection.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\paygatorderid_details.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchHistoryForMallAuthFromInvoice.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\UserOperationHandler.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\payment\status\TransactionRefundHandler.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchPdfDownloadingFile.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchToXlFromIvnoice.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchBlockedCustomers.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLocksDetail.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\TerminalIdDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchMalfunctioningLocks.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\update\UpdateUserPassword.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TermwiseLockermalfunction.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auto\user\logdetails\UserLogDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\update\UpdateMobileNumber.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchLockerDetailsForGmail.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchHistoryForMallAuth.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroClient\VerifyLockOpen\VerifyLockOpenStatus.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchDeviceHealth.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\FetchPartialRetrieveDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\update\TestingServltt.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\SaveFirmwareUpdate.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\SaveReleaseLocker.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\LockerOperationViaSms.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\RazorpayAmountRefund.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TransactionFailedDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchToXlSheet.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchPartialRetrieve.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\LockCategory.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchPayOrderIdDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\LockerOccupacyCountBean.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchTransactionHistory.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\payment\status\PaymentStatusHandler.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\gstDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\ReleaseLocker.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchStates.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLockerStatus.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locker\operations\MallAuthorityOperations.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TerminalLockMapping.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\UserLogs.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\controller\SaveLockerCategory.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchFailedTransaction.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchLockersForChart.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auroLocker\fetch\data\FetchUserLoginDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\ManualOverride.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\locks\otpHandle\ConfirmOtp.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\SiteRegistration.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TransactionHistory.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\LogDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\UpdateToDevice.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\TransactionDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\auro\beans\CustomerDetails.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\lockretrice\passcodeHandler\PaymentConfirm.java
+-C:\Users\aurol\elipse-workspace-noheaders\AuroAutoLocker\src\main\java\com\lockretrice\passcodeHandler\PasscodeHandler.java
+diff --git a/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst b/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+deleted file mode 100644
+index e69de29..0000000

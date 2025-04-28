@@ -13,15 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< Updated upstream
-=======
 
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
 //import jakarta.servlet.http.HttpServlet;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
->>>>>>> Stashed changes
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -61,14 +58,14 @@ public class FetchBlockedCustomers extends HttpServlet {
 				.collect(Collectors.joining("/"));
 
 		JSONObject requestedObject = new JSONObject(jsonBody);
-		
-		System.out.println("===================");
-		System.out.println("===================");
+
+//		System.out.println("===================");
+//		System.out.println("===================");
 
 		PrintWriter writer = response.getWriter();
 		Session session = HibernateUtils.getSession();
 		session.beginTransaction();
-		
+
 		JSONObject respJSON = new JSONObject();
 		JSONArray slno = new JSONArray();
 		JSONArray city = new JSONArray();
@@ -78,7 +75,6 @@ public class FetchBlockedCustomers extends HttpServlet {
 		JSONArray dateOfBlocking = new JSONArray();
 		JSONArray dateOfUnblocking = new JSONArray();
 		JSONArray status = new JSONArray();
-		
 
 		try {
 			String packetType = requestedObject.getString("packetType");
@@ -92,9 +88,11 @@ public class FetchBlockedCustomers extends HttpServlet {
 				blockCustomers.setName(requestedObject.getString("name"));
 				blockCustomers.setReason(requestedObject.getString("reason"));
 				blockCustomers.setStatus("BLOCKED");
-				blockCustomers.setDatofunblock(new Date(new java.util.Date().getTime()));
-				
-				System.out.println(new Date(new java.util.Date().getTime()));
+//				blockCustomers.setDateofblock(new Date(new java.util.Date().getTime()));
+
+				blockCustomers.setDateofblock(Date.valueOf(requestedObject.get("dateofblock").toString()));
+
+//				System.out.println(new Date(new java.util.Date().getTime()));
 
 				try {
 					int resp = (int) session.save(blockCustomers);
@@ -114,12 +112,12 @@ public class FetchBlockedCustomers extends HttpServlet {
 					writer.flush();
 				}
 
-			} else if(packetType.equals("GETBLOCKEDCUST")) {
-				
+			} else if (packetType.equals("GETBLOCKEDCUST")) {
 
 				try {
-					ArrayList<blockedCustomers> blockedCustomers = (ArrayList<com.auro.beans.blockedCustomers>) session.createQuery("FROM blockedCustomers").getResultList();
-					
+					ArrayList<blockedCustomers> blockedCustomers = (ArrayList<com.auro.beans.blockedCustomers>) session
+							.createQuery("FROM blockedCustomers").getResultList();
+
 					if (!blockedCustomers.isEmpty() && blockedCustomers != null) {
 						for (blockedCustomers bCust : blockedCustomers) {
 							slno.put(bCust.getSlno());
@@ -136,11 +134,11 @@ public class FetchBlockedCustomers extends HttpServlet {
 							reason.put(bCust.getReason());
 						}
 					}
-					
+
 					if (slno.length() > 0) {
 						respJSON.put("status", "ACTIVE-200");
 						respJSON.put("city", city);
-						respJSON.put("custStatus",status);
+						respJSON.put("custStatus", status);
 						respJSON.put("name", name);
 						respJSON.put("reason", reason);
 						respJSON.put("dateofblock", dateOfBlocking);
@@ -157,17 +155,16 @@ public class FetchBlockedCustomers extends HttpServlet {
 				} finally {
 					writer.append(respJSON.toString()).flush();
 				}
-				
-				
-			} else if (packetType.equals("BLOCKEXISTINGUSER")) {		
-				
+
+			} else if (packetType.equals("BLOCKEXISTINGUSER")) {
+
 				try {
-					
+
 					String hql = "FROM blockedCustomers where slno=:slno AND mobilenumber=:mobileNo";
 					blockedCustomers bCust = (blockedCustomers) session.createQuery(hql)
 							.setParameter("slno", requestedObject.getInt("slno"))
 							.setParameter("mobileNo", requestedObject.getString("mobileNo")).getSingleResult();
-					
+
 					if (bCust != null) {
 						bCust.setDateofblock(new Date(new java.util.Date().getTime()));
 						bCust.setDatofunblock(null);
@@ -178,24 +175,22 @@ public class FetchBlockedCustomers extends HttpServlet {
 					} else {
 						writer.append("{\"status\": \"BLOCKUPDATE-404\"}").flush();
 					}
-					
-					
+
 				} catch (Exception e) {
 					// TODO: handle exception
 					writer.append("{\"status\": \"BLOCKUPDATE-404\"}").flush();
 					e.printStackTrace();
 				}
-				
+
 			} else if (packetType.equals("UNBLOCKCUST")) {
-				
-				
-			try {
-					
+
+				try {
+
 					String hql = "FROM blockedCustomers where slno=:slno AND mobilenumber=:mobileNo";
 					blockedCustomers bCust = (blockedCustomers) session.createQuery(hql)
 							.setParameter("slno", requestedObject.getInt("slno"))
 							.setParameter("mobileNo", requestedObject.getString("mobileNo")).getSingleResult();
-					
+
 					if (bCust != null) {
 						bCust.setDatofunblock(new Date(new java.util.Date().getTime()));
 						bCust.setDateofblock(null);
@@ -206,13 +201,13 @@ public class FetchBlockedCustomers extends HttpServlet {
 					} else {
 						writer.append("{\"status\": \"UNBLOCK-404\"}").flush();
 					}
-					
+
 				} catch (Exception e) {
 					// TODO: handle exception
 					writer.append("{\"status\": \"UNBLOCK-404\"}").flush();
 					e.printStackTrace();
 				}
-				
+
 			}
 
 		} catch (Exception e) {

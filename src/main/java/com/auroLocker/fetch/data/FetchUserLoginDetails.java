@@ -10,24 +10,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.NoResultException;
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< Updated upstream
-=======
 
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
 //import jakarta.servlet.http.HttpServlet;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
->>>>>>> Stashed changes
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -40,35 +34,38 @@ import com.locks.gloablVariable.GlobalVariable;
 
 /**
  * Servlet implementation class FetchUserLoginDetails
- * @author Praveen 
+ * 
+ * @author Praveen
  */
 
 @WebServlet("/FetchUserLoginDetails")
 public class FetchUserLoginDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static Logger logger = Logger.getLogger(FetchUserLoginDetails.class.getName());
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FetchUserLoginDetails() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public FetchUserLoginDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// System.out.println("inide get");
-		
+
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Method", "POST, GET, UPDATE, OPTIONS, DELETE");
 		response.setCharacterEncoding("UTF-8");
-		
+
 //		String path = "D:\\locker_serssion_version\\locker_backend\\logj-config.properties";
 //		String path = getServletContext().getRealPath("")+File.separator+"logj-config.properties";
-		
+
 //		System.out.println(path);
 //		PropertyConfigurator.configure(path);
 //		
@@ -83,49 +80,54 @@ public class FetchUserLoginDetails extends HttpServlet {
 		} else {
 			// System.out.println("no such user present");
 			respObj.put("status", "nouser");
-		}	
+		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		// System.out.println("inide fetch user login details");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Method", "POST, GET, UPDATE, OPTIONS, DELETE");
 		response.setCharacterEncoding("UTF-8");
-		
-		String ipAddress = request.getHeader("application/json");  
-		if (ipAddress == null) {  
-		    ipAddress = request.getRemoteAddr();  
+
+		String ipAddress = request.getHeader("application/json");
+		if (ipAddress == null) {
+			ipAddress = request.getRemoteAddr();
 		}
 		PrintWriter writer = response.getWriter();
-		
-		String jsonBody = new BufferedReader(new InputStreamReader(request.getInputStream())).lines().collect(Collectors.joining("\n"));
-		
+
+		String jsonBody = new BufferedReader(new InputStreamReader(request.getInputStream())).lines()
+				.collect(Collectors.joining("\n"));
+
 		JSONObject jsonReq = new JSONObject(jsonBody);
 //		 System.out.println(jsonBody);
 		Session session = HibernateUtils.getSession();
 		JSONObject jsonResp = new JSONObject();
 		session.beginTransaction();
 //		GlobalVariable.userDetails.remove(jsonReq.getString("userName"));
-		
+
 		if (GlobalVariable.userDetails.containsKey(jsonReq.getString("userName"))) {
 			jsonResp.put("status", "userExist");
 //			 System.out.println("user Already Active");
 		} else {
 			try {
-				
+
 //				System.out.println(jsonReq);
+
 				String hql = "FROM User WHERE userName=:uName and password=:uPassword";
-				User permissions = (User) session.createQuery(hql)
-						.setParameter("uName", jsonReq.getString("userName"))
-						.setParameter("uPassword", jsonReq.getString("userPassword"))
-						.getSingleResult();
-				
-				
+				User permissions = (User) session.createQuery(hql).setParameter("uName", jsonReq.getString("userName"))
+						.setParameter("uPassword", jsonReq.getString("userPassword")).getSingleResult();
+
+//				String hql = "SELECT * FROM user_creation WHERE userName='"+jsonReq.getString("userName")+"' and password='"+jsonReq.getString("userPassword") +"'";
+//				User permissions = (User) session.createNativeQuery(hql, User.class)
+//						.getSingleResult();
+
 				if (permissions.getType().equalsIgnoreCase("Mall-Authority")) {
 					jsonResp.put("responseCode", "mall-auth");
 //					jsonResp.put("permissions", "");
@@ -141,21 +143,21 @@ public class FetchUserLoginDetails extends HttpServlet {
 					} else {
 						jsonResp.put("appAccessPerminassion", "NONE");
 					}
-					
+
 					jsonResp.put("userpresent", true);
 				}
-				
-					logger.info("user name : "+jsonReq.getString("userName")+" logged in");
-				
+
+				logger.info("user name : " + jsonReq.getString("userName") + " logged in");
+
 //					jsonResp.put("allPermissions", permissions.getAllpermissions());
 //					jsonResp.put("permissions", permissions.getUserpermissions());
 //					jsonResp.put("userpresent", true);
-				
-					GlobalVariable.userDetails.put(jsonReq.getString("userName"), permissions.getUserpermissions());
+
+				GlobalVariable.userDetails.put(jsonReq.getString("userName"), permissions.getUserpermissions());
 			} catch (NoResultException ex) {
 				// TODO: handle exception
 				jsonResp.put("userpresent", false);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
 //				session.close();
@@ -164,12 +166,12 @@ public class FetchUserLoginDetails extends HttpServlet {
 
 			}
 		}
-		
+
 		writer.println(jsonResp.toString());
 		writer.flush();
-		
+
 		writer.close();
 		session.close();
-		
+
 	}
 }

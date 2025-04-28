@@ -18,15 +18,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< Updated upstream
-=======
 
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
 //import jakarta.servlet.http.HttpServlet;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
->>>>>>> Stashed changes
 
 import org.hibernate.Session;
 import org.json.JSONObject;
@@ -179,7 +176,7 @@ public class UpdateMobileNumber extends HttpServlet {
             System.setProperty("java.net.useSystemProxies", "true");
            
             responseCode = httpConn.getResponseCode();
-            System.out.println("responseCode" + responseCode);
+//            System.out.println("responseCode" + responseCode);
                            
             BufferedReader in = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
             String inputLine;

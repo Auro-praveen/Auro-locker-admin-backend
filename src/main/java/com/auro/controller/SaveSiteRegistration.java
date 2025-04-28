@@ -14,15 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< Updated upstream
-=======
 
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
 //import jakarta.servlet.http.HttpServlet;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
->>>>>>> Stashed changes
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -39,56 +36,61 @@ import com.auro.hibernateUtilities.HibernateUtils;
 @WebServlet("/SaveSiteRegistration")
 public class SaveSiteRegistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	SimpleDateFormat stf = new SimpleDateFormat("hh:MM:ss");
-    public SaveSiteRegistration() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	SimpleDateFormat stf = new SimpleDateFormat("hh:MM:ss");
+
+	public SaveSiteRegistration() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.addHeader("Access-Control-Allow-Method", "POST, GET, UPDATE, OPTIONS, DELETE");
 		response.setCharacterEncoding("UTF-8");
-		
+
 		System.out.println("got request here ");
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
-		
+
 		// System.out.println("inside post");
-		 	Session ses=HibernateUtils.getSession();
+		Session ses = HibernateUtils.getSession();
 //			response.setContentType("ap/html");  
-		    PrintWriter out = response.getWriter(); 
-		    SiteRegistration siteReg = new SiteRegistration();
-		    
-		    JSONObject respObj = new JSONObject();
-			   
-			response.addHeader("Access-Control-Allow-Origin", "*");
-			response.addHeader("Access-Control-Allow-Method", "POST, GET, UPDATE, OPTIONS, DELETE");
-			response.setCharacterEncoding("UTF-8");
-			
+		PrintWriter out = response.getWriter();
+		SiteRegistration siteReg = new SiteRegistration();
+
+		JSONObject respObj = new JSONObject();
+
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Method", "POST, GET, UPDATE, OPTIONS, DELETE");
+		response.setCharacterEncoding("UTF-8");
 
 		try {
 			ses.beginTransaction();
-			
-			String jsonBody = new BufferedReader(new InputStreamReader(request.getInputStream())).lines().collect(Collectors.joining("\n"));
+
+			String jsonBody = new BufferedReader(new InputStreamReader(request.getInputStream())).lines()
+					.collect(Collectors.joining("\n"));
 			// System.out.println(jsonBody);
 			JSONObject jsonUserObj = new JSONObject(jsonBody);
 
@@ -105,41 +107,40 @@ public class SaveSiteRegistration extends HttpServlet {
 			siteReg.setUserName(jsonUserObj.getString("userName"));
 			siteReg.setLattitude(Double.parseDouble(jsonUserObj.getString("lattitude")));
 			siteReg.setLongitude(Double.parseDouble(jsonUserObj.getString("longitude")));
+			siteReg.setStatus(jsonUserObj.getString("status"));
+			siteReg.setOutletType(jsonUserObj.getString("outletType"));
 
 			int respId = (int) ses.save(siteReg);
-			
-			SiteRegistration respSiteReg = (SiteRegistration) ses.get(SiteRegistration.class, respId);
-			
-			 ses.getTransaction().commit();
-			 			   
-			   if(respSiteReg.getUserName().equalsIgnoreCase(siteReg.getUserName())) {
-				   // System.out.println("========"+respSiteReg.getUserName());	   
-				   respObj.put("status", "success");
-			   } else {
-				   respObj.put("status", "failed");
-			   }
-			
+			ses.getTransaction().commit();
+//			SiteRegistration respSiteReg = (SiteRegistration) ses.get(SiteRegistration.class, respId);
+
+			if (respId > -1) {
+				// System.out.println("========"+respSiteReg.getUserName());
+				respObj.put("status", "success");
+			} else {
+				respObj.put("status", "failed");
+			}
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+
 		out.println(respObj.toString());
 		out.flush();
 		out.close();
 		ses.close();
 	}
-	
+
 	public String getCurrentDate() {
 		Date currentDate = new Date();
-		
-		
+
 		String date = sdf.format(currentDate);
 		String time = stf.format(currentDate);
 		// System.out.println(currentDate);
-		
-		String dateAndTime = date+"#"+time;
+
+		String dateAndTime = date + "#" + time;
 		return dateAndTime;
 	}
-	
+
 }
