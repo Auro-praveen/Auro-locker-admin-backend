@@ -30,11 +30,6 @@
 		<!-- for production app.tuckit.in <property name="hibernate.connection.username">root</property> 
 			<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/auroautolocker</property> 
 			<property name="hibernate.connection.password">aurotecGM@21</property> -->
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 
 		<!-- Database for Locker Templ admin here here -->
 

@@ -6,11 +6,9 @@
 
   <groupId>com.auro.mainLocker</groupId>
   <artifactId>AuroAutoLocker</artifactId>
-<<<<<<< Updated upstream
-  <version>0.0.1-SNAPSHOT</version>
-=======
+
   <version>3.14.16-SNAPSHOT</version>
->>>>>>> Stashed changes
+
   <packaging>war</packaging>
 
   <name>AuroAutoLocker Maven Webapp</name>
