@@ -19,12 +19,16 @@ public class GlobalVariable {
 
 	public static Map<String, String> userDetails = new HashMap<>();
 	public static Map<String, ArrayList<String>> openTerminalLockers = new HashMap<>();
+
 	public static String fromGamil = "praveen@aurodisplay.com";
-	public static String toGmail = "Raja@tuckpod.com";
+	public static String toGmail = "praveen@aurodisplay.com";			//Raja@tuckpod.com
 	public static String razorpayKeyId = "rzp_live_sjKUSO8AovpnnS"; // live key_id rzp_live_sjKUSO8AovpnnS test_key_id
 																	// rzp_test_kF1NdHUm47R7R4
 	public static String razorpaySecretKey = "KgmWtCSt9TOG4KTxNGkSoD5C"; // live secret_key KgmWtCSt9TOG4KTxNGkSoD5C
 																			// test_secret_key qy48Nhzq72txUptAWkQrMEqy
+	
+	
+	//   owex gprn gkul igxa for praveenkumarfc89@gmail.com app password for the app tuckit-mails
 
 	// live key_id rzp_live_sjKUSO8AovpnnS test_key_id rzp_test_kF1NdHUm47R7R4
 	// live secret_key KgmWtCSt9TOG4KTxNGkSoD5C test_secret_key
@@ -40,7 +44,7 @@ public class GlobalVariable {
 	public static HashMap<String, String> statewise_terminalMap = new HashMap<>();
 
 	public static double calulcateGstMethod(int amount, String gstType, String terminalId) {
-		
+
 //		System.out.println(terminalId);
 
 		if (stateWise_gstMap.isEmpty()) {
@@ -116,7 +120,7 @@ public class GlobalVariable {
 					statewise_terminalMap.put(siteRegister.getTerminalid(), siteRegister.getState());
 
 				}
-				
+
 			}
 
 		} catch (Exception e) {

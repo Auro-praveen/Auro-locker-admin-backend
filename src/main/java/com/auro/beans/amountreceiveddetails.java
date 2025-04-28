@@ -148,17 +148,7 @@ public class amountreceiveddetails   {
 	private Time received_time;
 	
 	private String terminalid ;
-	
-
-	
- 
-	
-	
 	private String lockNo ;
-	
- 	
-	
-	 
 	private String stateName;
 	private String gstNumber;
 	private float sgstPercentage;

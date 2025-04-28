@@ -30,12 +30,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 
+<<<<<<< Updated upstream
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+=======
+>>>>>>> Stashed changes
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.annotation.WebServlet;
@@ -55,10 +63,12 @@ import com.locks.gloablVariable.GlobalVariable;
 
 @WebServlet("/FetchLockerDetailsForGmail")
 public class FetchLockerDetailsForGmail extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	final String fromEmail = "praveen@aurodisplay.com"; // requires valid gmail id
 	final String password = "Praveen@au6"; // correct password for gmail id
+	
 
 //	final String fromEmail = "info@tuckpod.com"; // requires valid gmail id 
 //	final String password = "infotp2023"; // correct password for gmail id 

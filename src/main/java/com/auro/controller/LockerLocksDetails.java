@@ -27,6 +27,15 @@ import com.auro.beans.SiteRegistration;
 import com.auro.hibernateUtilities.HibernateUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+<<<<<<< Updated upstream
+=======
+//import jakarta.servlet.ServletException;
+//import jakarta.servlet.annotation.WebServlet;
+//import jakarta.servlet.http.HttpServlet;
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
+
+>>>>>>> Stashed changes
 
 /**
  * @author Praveen

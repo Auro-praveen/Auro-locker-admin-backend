@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< Updated upstream
+=======
+
+//import jakarta.servlet.ServletException;
+//import jakarta.servlet.annotation.WebServlet;
+//import jakarta.servlet.http.HttpServlet;
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
+>>>>>>> Stashed changes
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -22,6 +32,8 @@ import org.json.JSONObject;
 
 import com.auro.beans.CustomerDetails;
 import com.auro.beans.CustomerEvents;
+import com.auro.beans.PartialRetrieveData;
+import com.auro.beans.TransactionDetails;
 import com.auro.hibernateUtilities.HibernateUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -86,19 +98,59 @@ public class HandleCustomerEvents extends HttpServlet {
 				try {
 //					FollowUpTransactionDetails
 
-					String hql = "SELECT new com.opDTO.beans.FollowUpTransactionDetails("
+//					String hql = "SELECT new com.opDTO.beans.FollowUpTransactionDetails("
+//							+ "t.slno, t.customerName, t.mobileNo, t.date_of_open, t.time_of_open, "
+//							+ "t.terminalid, t.no_of_hours, t.amount, t.status, " + "t.excess_hours, t.excess_amount, "
+//							+ "t.lockNo, t.passcode,t.balance, t.itemsStored, "
+//							+ "t.browtype, t.partretamount) FROM TransactionDetails t WHERE "
+//							+ "t.excess_amount > 0 OR status = 'payFailPaylater'";
+					
+					
+					String hql = "SELECT new com.opDTO.beans.FollowUpTransactionDetails(" 
 							+ "t.slno, t.customerName, t.mobileNo, t.date_of_open, t.time_of_open, "
 							+ "t.terminalid, t.no_of_hours, t.amount, t.status, " + "t.excess_hours, t.excess_amount, "
 							+ "t.lockNo, t.passcode,t.balance, t.itemsStored, "
-							+ "t.browtype, t.partretamount) FROM TransactionDetails t WHERE "
-							+ "t.excess_amount > 0 OR partretamount > 0";
+							+ "t.browtype, CASE WHEN p.openStatus IS NULL OR p.openStatus = '' THEN 0 "
+							+ "ELSE 5 "
+							+ "END AS partial_amount) "
+							+ "FROM TransactionDetails t LEFT JOIN PartialRetrieveData p ON p.dateOfopen = t.date_of_open AND p.terminalID=t.terminalid "
+							+ "AND p.mobileNo = t.mobileNo AND p.locNo = t.lockNo WHERE "
+							+ "t.excess_amount > 0 OR status = 'payFailPaylater'";
 
 					List<FollowUpTransactionDetails> followUpDetails = session.createQuery(hql).getResultList();
 
 					if (followUpDetails.size() > 0) {
+
+						// praveen modified here 16-04-2025
+
+						List<FollowUpTransactionDetails> followUpList = new ArrayList<FollowUpTransactionDetails>();
+
+//						for (FollowUpTransactionDetails followUpTransactionDetails : followUpDetails) {
+//							String partialHQL = "from PartialRetrieveData where terminalID=:terminalID and dateOfopen=:openDate and mobileNo=:mobileNo and locNo=:lockerNo";
+//
+//							List<PartialRetrieveData> partialData = session.createQuery(partialHQL)
+//									.setParameter("terminalID", followUpTransactionDetails.getTerminalid())
+//									.setParameter("openDate", followUpTransactionDetails.getDate_of_open())
+//									.setParameter("mobileNo", followUpTransactionDetails.getMobileNo())
+//									.setParameter("lockerNo", followUpTransactionDetails.getLockNo()).getResultList();
+//
+//							if (!partialData.isEmpty()) {
+//								followUpTransactionDetails.setPartretamount(5);
+//							} else {
+//								followUpTransactionDetails.setPartretamount(0);
+//							}
+//
+//							followUpList.add(followUpTransactionDetails);
+//
+//						}
+
 						respObj.put("response", HttpServletResponse.SC_OK);
 						Gson gson = new Gson();
 						String details = gson.toJson(followUpDetails);
+
+//						respObj.put("response", HttpServletResponse.SC_OK);
+//						Gson gson = new Gson();
+//						String details = gson.toJson(followUpDetails);
 
 						respObj.put("tdDetails", details);
 					} else {
@@ -125,7 +177,7 @@ public class HandleCustomerEvents extends HttpServlet {
 //				System.out.println(reqObj);
 
 				Date selDate = Date.valueOf(reqObj.get("selectedDate").toString());
-				
+
 //				System.out.println(selDate);
 
 				String hql = "FROM CustomerEvents WHERE eventDate=:date";

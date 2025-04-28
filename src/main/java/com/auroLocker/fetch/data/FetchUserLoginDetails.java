@@ -10,11 +10,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.NoResultException;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< Updated upstream
+=======
+
+//import jakarta.servlet.ServletException;
+//import jakarta.servlet.annotation.WebServlet;
+//import jakarta.servlet.http.HttpServlet;
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
+>>>>>>> Stashed changes
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
