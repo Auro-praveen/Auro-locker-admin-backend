@@ -112,48 +112,99 @@ public class FetchUserLoginDetails extends HttpServlet {
 		session.beginTransaction();
 //		GlobalVariable.userDetails.remove(jsonReq.getString("userName"));
 
-		if (GlobalVariable.userDetails.containsKey(jsonReq.getString("userName"))) {
+		String packetType = null;
+
+		try {
+			if (jsonReq.getString("packetType") != null) {
+				packetType = jsonReq.getString("packetType");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		if (packetType != null && !packetType.equals("TMPL-SUBADMIN") && GlobalVariable.userDetails.containsKey(jsonReq.getString("userName"))) {
 			jsonResp.put("status", "userExist");
 //			 System.out.println("user Already Active");
 		} else {
 			try {
 
-//				System.out.println(jsonReq);
+//				System.out.println(jsonReq); TMPL-SUBADMIN
 
-				String hql = "FROM User WHERE userName=:uName and password=:uPassword";
-				User permissions = (User) session.createQuery(hql).setParameter("uName", jsonReq.getString("userName"))
-						.setParameter("uPassword", jsonReq.getString("userPassword")).getSingleResult();
+				if (packetType != null && packetType.equals("TMPL-SUBADMIN")) {
+					String hql = "FROM User WHERE userName=:uName and password=:uPassword and type='Sub-Admin' and app_access_allowed='TEMPLE-LOCKERS'";
+					User permissions = (User) session.createQuery(hql)
+							.setParameter("uName", jsonReq.getString("userName"))
+							.setParameter("uPassword", jsonReq.getString("userPassword")).getSingleResult();
 
-//				String hql = "SELECT * FROM user_creation WHERE userName='"+jsonReq.getString("userName")+"' and password='"+jsonReq.getString("userPassword") +"'";
-//				User permissions = (User) session.createNativeQuery(hql, User.class)
-//						.getSingleResult();
+//					String hql = "SELECT * FROM user_creation WHERE userName='"+jsonReq.getString("userName")+"' and password='"+jsonReq.getString("userPassword") +"'";
+//					User permissions = (User) session.createNativeQuery(hql, User.class)
+//							.getSingleResult();
 
-				if (permissions.getType().equalsIgnoreCase("Mall-Authority")) {
-					jsonResp.put("responseCode", "mall-auth");
-//					jsonResp.put("permissions", "");
-//					jsonResp.put("terminalId", permissions.getStatus());
-					jsonResp.put("siteName", permissions.getSite_name());
-					jsonResp.put("siteLocation", permissions.getSite_location());
-					jsonResp.put("userpresent", true);
-				} else {
-					jsonResp.put("responseCode", "usr");
-					jsonResp.put("permissions", permissions.getUserpermissions());
-					if (permissions.getApp_access_allowed() != null && permissions.getApp_access_allowed() != "") {
-						jsonResp.put("appAccessPerminassion", permissions.getApp_access_allowed());
+					if (permissions != null) {
+						jsonResp.put("responseCode", "TEMPLE_SUBADMIN");
+						jsonResp.put("permissions", permissions.getUserpermissions());
+						if (permissions.getApp_access_allowed() != null && permissions.getApp_access_allowed() != "") {
+							jsonResp.put("appAccessPerminassion", permissions.getApp_access_allowed());
+						} else {
+							jsonResp.put("appAccessPerminassion", "NONE");
+						}
+
+						jsonResp.put("userpresent", true);
 					} else {
-						jsonResp.put("appAccessPerminassion", "NONE");
+						throw new NoResultException("Username not found");
 					}
 
-					jsonResp.put("userpresent", true);
+					logger.info("user name : " + jsonReq.getString("userName") + " logged in");
+
+//						jsonResp.put("allPermissions", permissions.getAllpermissions());
+//						jsonResp.put("permissions", permissions.getUserpermissions());
+//						jsonResp.put("userpresent", true);
+					
+					if (GlobalVariable.userDetails.containsKey(jsonReq.getString("userName"))) {
+						GlobalVariable.userDetails.remove(jsonReq.getString("userName"));
+					} 
+
+					GlobalVariable.userDetails.put(jsonReq.getString("userName"), permissions.getUserpermissions());
+					
+					
+				} else {
+					String hql = "FROM User WHERE userName=:uName and password=:uPassword";
+					User permissions = (User) session.createQuery(hql)
+							.setParameter("uName", jsonReq.getString("userName"))
+							.setParameter("uPassword", jsonReq.getString("userPassword")).getSingleResult();
+
+//					String hql = "SELECT * FROM user_creation WHERE userName='"+jsonReq.getString("userName")+"' and password='"+jsonReq.getString("userPassword") +"'";
+//					User permissions = (User) session.createNativeQuery(hql, User.class)
+//							.getSingleResult();
+
+					if (permissions.getType().equalsIgnoreCase("Mall-Authority")) {
+						jsonResp.put("responseCode", "mall-auth");
+//						jsonResp.put("permissions", "");
+//						jsonResp.put("terminalId", permissions.getStatus());
+						jsonResp.put("siteName", permissions.getSite_name());
+						jsonResp.put("siteLocation", permissions.getSite_location());
+						jsonResp.put("userpresent", true);
+					} else {
+						jsonResp.put("responseCode", "usr");
+						jsonResp.put("permissions", permissions.getUserpermissions());
+						if (permissions.getApp_access_allowed() != null && permissions.getApp_access_allowed() != "") {
+							jsonResp.put("appAccessPerminassion", permissions.getApp_access_allowed());
+						} else {
+							jsonResp.put("appAccessPerminassion", "NONE");
+						}
+
+						jsonResp.put("userpresent", true);
+					}
+
+					logger.info("user name : " + jsonReq.getString("userName") + " logged in");
+
+//						jsonResp.put("allPermissions", permissions.getAllpermissions());
+//						jsonResp.put("permissions", permissions.getUserpermissions());
+//						jsonResp.put("userpresent", true);
+
+					GlobalVariable.userDetails.put(jsonReq.getString("userName"), permissions.getUserpermissions());
 				}
 
-				logger.info("user name : " + jsonReq.getString("userName") + " logged in");
-
-//					jsonResp.put("allPermissions", permissions.getAllpermissions());
-//					jsonResp.put("permissions", permissions.getUserpermissions());
-//					jsonResp.put("userpresent", true);
-
-				GlobalVariable.userDetails.put(jsonReq.getString("userName"), permissions.getUserpermissions());
 			} catch (NoResultException ex) {
 				// TODO: handle exception
 				jsonResp.put("userpresent", false);

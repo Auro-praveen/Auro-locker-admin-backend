@@ -21,7 +21,7 @@ public class GlobalVariable {
 	public static Map<String, ArrayList<String>> openTerminalLockers = new HashMap<>();
 
 	public static String fromGamil = "praveen@aurodisplay.com";
-	public static String toGmail = "praveen@aurodisplay.com";			//Raja@tuckpod.com
+	public static String toGmail = "Raja@tuckpod.com";			//Raja@tuckpod.com
 	public static String razorpayKeyId = "rzp_live_sjKUSO8AovpnnS"; // live key_id rzp_live_sjKUSO8AovpnnS test_key_id
 																	// rzp_test_kF1NdHUm47R7R4
 	public static String razorpaySecretKey = "KgmWtCSt9TOG4KTxNGkSoD5C"; // live secret_key KgmWtCSt9TOG4KTxNGkSoD5C
